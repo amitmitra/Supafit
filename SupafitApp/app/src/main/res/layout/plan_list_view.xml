@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".ui.planslist.PlanListActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appbar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+    </android.support.design.widget.AppBarLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <com.zl.reik.dilatingdotsprogressbar.DilatingDotsProgressBar
+            android:id="@+id/plan_list_loader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:color="@color/colorPrimaryDark"
+            android:radius="5dp"
+            app:dd_animationDuration="500"
+            app:dd_horizontalSpacing="4dp"
+            app:dd_numDots="3"
+            app:dd_scaleMultiplier="1.5" />
+
+        <RelativeLayout
+            android:id="@+id/plan_list_banner"
+            android:layout_width="match_parent"
+            android:layout_height="140dp">
+
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/plan_list_view_pager"
+                android:layout_width="match_parent"
+                android:layout_height="140dp"
+                android:layout_alignParentTop="true"
+                android:background="#008373"></android.support.v4.view.ViewPager>
+
+            <com.viewpagerindicator.CirclePageIndicator
+                android:id="@+id/indicator"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:gravity="bottom"
+                android:padding="10dip"
+                app:centered="true"
+                app:fillColor="#FF0000"
+                app:pageColor="#00FFFFFF"
+                app:snap="false" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/plan_layout12"
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            android:layout_below="@id/plan_list_banner"
+            android:layout_margin="8dp"
+            android:orientation="horizontal">
+
+            <android.support.v7.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:layout_weight="1"
+                app:cardCornerRadius="4dp"
+                app:cardElevation="2dp">
+
+                <RelativeLayout
+                    android:id="@+id/plan_layout_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <com.android.supafit.ui.LightFontTextView
+                        android:id="@+id/plan_title1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="4dp"
+                        android:maxLines="1"
+                        android:text="Plan title"
+                        android:textSize="18sp" />
+
+                    <com.android.supafit.ui.LightFontTextView
+                        android:id="@+id/plan_description1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/plan_title1"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="4dp"
+                        android:maxLines="2"
+                        android:text="Plan description dasldklasdalksdjklasjdlkjas"
+                        android:textSize="14sp" />
+
+                    <com.android.supafit.ui.LightFontTextView
+                        android:id="@+id/plan_result1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/plan_description1"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="4dp"
+                        android:text="Plan Result"
+                        android:textSize="14sp" />
+
+                    <com.android.supafit.ui.LightFontTextView
+                        android:id="@+id/plan_cost1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginBottom="4dp"
+                        android:layout_marginLeft="8dp"
+                        android:text="Plan Cost"
+                        android:textSize="24sp" />
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:layout_weight="1"
+                app:cardCornerRadius="4dp"
+                app:cardElevation="2dp">
+
+                <RelativeLayout
+                    android:id="@+id/plan_layout_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <com.android.supafit.ui.LightFontTextView
+                        android:id="@+id/plan_title2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="4dp"
+                        android:maxLines="1"
+                        android:text="Plan title"
+                        android:textSize="18sp" />
+
+                    <com.android.supafit.ui.LightFontTextView
+                        android:id="@+id/plan_description2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/plan_title2"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="4dp"
+                        android:maxLines="2"
+                        android:text="Plan description"
+                        android:textSize="14sp" />
+
+                    <com.android.supafit.ui.LightFontTextView
+                        android:id="@+id/plan_result2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/plan_description2"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="4dp"
+                        android:maxLines="2"
+                        android:text="Plan Result"
+                        android:textSize="14sp" />
+
+                    <com.android.supafit.ui.LightFontTextView
+                        android:id="@+id/plan_cost2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_gravity="bottom"
+                        android:layout_marginBottom="4dp"
+                        android:layout_marginLeft="8dp"
+                        android:text="Plan Cost"
+                        android:textSize="24sp" />
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+        </LinearLayout>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/plan_layout12"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="4dp"
+            app:cardCornerRadius="4dp"
+            app:cardElevation="2dp">
+
+            <LinearLayout
+                android:id="@+id/plan_layout3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.android.supafit.ui.LightFontTextView
+                    android:id="@+id/plan_title3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="4dp"
+                    android:text="Plan title"
+                    android:textSize="18sp" />
+
+                <com.android.supafit.ui.LightFontTextView
+                    android:id="@+id/plan_description3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="4dp"
+                    android:maxLines="2"
+                    android:text="Plan description"
+                    android:textSize="14sp" />
+
+                <com.android.supafit.ui.LightFontTextView
+                    android:id="@+id/plan_result3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="4dp"
+                    android:text="Plan Result"
+                    android:textSize="14sp" />
+
+                <com.android.supafit.utils.LightFontTextView
+                    android:id="@+id/plan_cost3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:layout_marginLeft="8dp"
+                    android:text="Plan Cost"
+                    android:textSize="24sp" />
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+        <LinearLayout
+            android:id="@+id/plan_next_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="8dp"
+            android:layout_marginRight="8dp"
+            android:gravity="right"
+            android:orientation="horizontal">
+
+            <com.android.supafit.utils.LightFontTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="4dp"
+                android:text="Next"
+                android:textSize="24sp" />
+
+            <ImageView
+                android:id="@+id/next_icon"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="4dp"
+                android:background="#030202"
+                android:padding="4dp"
+                android:src="@drawable/ic_arrow_forward_black_24dp" />
+        </LinearLayout>
+
+        <com.android.supafit.utils.LightFontTextView
+            android:id="@+id/total_plan_cost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/plan_next_layout"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="4dp"
+            android:gravity="right"
+            android:text="Total Cost"
+            android:textSize="18sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/total_plan_cost"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="2dp"
+            android:background="#000000" />
+    </RelativeLayout>
+</android.support.design.widget.CoordinatorLayout>

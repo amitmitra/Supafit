@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.MainActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appbar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorPrimary">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/drawer_layout"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:onClick="onDrawerButtonClicked"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/drawer_button"
+                        android:layout_width="0dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="0.5"
+                        android:src="@drawable/ic_drawer" />
+
+                    <com.android.supafit.ui.RegularFontTextView
+                        android:id="@+id/title_text"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_weight="4"
+                        android:gravity="center_vertical"
+                        android:text="@string/dashboard_string"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/calendar_button"
+                    android:layout_width="0dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:onClick="onCalendarButtonClicked"
+                    android:src="@drawable/calender_icon" />
+
+                <ImageView
+                    android:id="@+id/chat_button"
+                    android:layout_width="0dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:onClick="onChatButtonClicked"
+                    android:src="@drawable/chat_icon" />
+
+                <ImageView
+                    android:id="@+id/notification_button"
+                    android:layout_width="0dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:onClick="onNotificationButtonClicked"
+                    android:src="@drawable/notification_icon" />
+
+
+            </LinearLayout>
+
+        </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.design.widget.TabLayout
+        android:layout_below="@id/appbar_layout"
+        android:id="@+id/tablayout"
+        style="@style/MyCustomTabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary">
+
+    </android.support.design.widget.TabLayout>
+
+    <LinearLayout
+        android:id="@+id/settings_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/appbar_layout"
+        android:background="@color/colorPrimary"
+        android:padding="20dp"
+        android:layout_marginTop="-300dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="120dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/profile_button"
+                    android:layout_width="fill_parent"
+                    android:layout_height="80dp"
+                    android:src="@drawable/profile_icon" />
+
+                <com.android.supafit.ui.RegularFontTextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="16dp"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center_horizontal"
+                    android:textSize="12sp"
+                    android:text="@string/profile_text"
+                    android:textColor="@color/colorAccent" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="120dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/analytics_button"
+                    android:layout_width="fill_parent"
+                    android:layout_height="80dp"
+                    android:src="@drawable/analytics_icon" />
+
+                <com.android.supafit.ui.RegularFontTextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="16dp"
+                    android:layout_marginTop="5dp"
+                    android:textSize="12sp"
+                    android:gravity="center_horizontal"
+                    android:text="@string/analytics_text"
+                    android:textColor="@color/colorAccent" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="120dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/plans_and_pricing_button"
+                    android:layout_width="fill_parent"
+                    android:layout_height="80dp"
+                    android:src="@drawable/palns_pricing_icon" />
+
+                <com.android.supafit.ui.RegularFontTextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="16dp"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center_horizontal"
+                    android:text="@string/plan_and_pricing_text"
+                    android:textSize="12sp"
+                    android:textColor="@color/colorAccent" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="120dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/invite_button"
+                    android:layout_width="fill_parent"
+                    android:layout_height="80dp"
+                    android:src="@drawable/invite_icon" />
+
+                <com.android.supafit.ui.RegularFontTextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="16dp"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center_horizontal"
+                    android:text="@string/invite_string"
+                    android:textSize="12sp"
+                    android:textColor="@color/colorAccent" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="120dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/settings_button"
+                    android:layout_width="fill_parent"
+                    android:layout_height="80dp"
+                    android:src="@drawable/setting_icon" />
+
+                <com.android.supafit.ui.RegularFontTextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="16dp"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center_horizontal"
+                    android:textSize="12sp"
+                    android:text="@string/settings_string"
+                    android:textColor="@color/colorAccent" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="120dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/help_and_"
+                    android:layout_width="fill_parent"
+                    android:layout_height="80dp"
+                    android:src="@drawable/helpandsupport_icon" />
+
+                <com.android.supafit.ui.RegularFontTextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="16dp"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center_horizontal"
+                    android:text="@string/help_and_spport_string"
+                    android:textSize="12sp"
+                    android:textColor="@color/colorAccent" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/tablayout"/>
+
+
+</RelativeLayout>

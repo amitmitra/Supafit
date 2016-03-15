@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/task_summary_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <com.android.supafit.ui.TwoLevelCircularProgressBar
+                    android:id="@+id/progress4"
+                    android:layout_width="110dp"
+                    android:layout_height="110dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    app:tlcp_bg_color="@color/color_light_grey"
+                    app:tlcp_progress="80"
+                    app:tlcp_progress2="80"
+                    app:tlcp_progress_color="@color/colorPrimary"
+                    app:tlcp_strokeWidth="10dp" />
+
+                <com.android.supafit.ui.RegularFontTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:text="Tasks"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <com.android.supafit.ui.RegularFontTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Tasks completed :"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <com.android.supafit.ui.RegularFontTextView
+                    android:id="@+id/task_status"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="2 out of 7"
+                    android:textSize="12sp" />
+
+                <com.android.supafit.ui.RegularFontTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Next Task :"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <com.android.supafit.ui.RegularFontTextView
+                    android:id="@+id/next_task_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Yoga Session" />
+
+                <com.android.supafit.ui.RegularFontTextView
+                    android:id="@+id/next_task_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="9.00 AM" />
+
+                <com.android.supafit.ui.RegularFontTextView
+                    android:id="@+id/task_view_more"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="View More" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/view_divider1"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_below="@id/task_summary_layout"
+            android:layout_margin="8dp"
+            android:background="#bebebe" />
+
+        <LinearLayout
+            android:id="@+id/progress_views_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/view_divider1"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
+            android:orientation="vertical">
+
+            <com.android.supafit.ui.RegularFontTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Steps walked :"
+                android:textStyle="bold" />
+
+            <com.android.supafit.ui.RegularFontTextView
+                android:id="@+id/steps_count_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="673 out of 4000" />
+
+            <ProgressBar
+                android:id="@+id/steps_walked_progress_bar"
+                style="@android:style/Widget.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="18dp"
+                android:layout_marginTop="8dp"
+                android:progress="60"
+                android:progressDrawable="@drawable/horizontal_progressbar_drawable" />
+
+            <com.android.supafit.ui.RegularFontTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Water consumed :"
+                android:textStyle="bold" />
+
+            <com.android.supafit.ui.RegularFontTextView
+                android:id="@+id/water_consumed_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="673 out of 4000" />
+
+            <ProgressBar
+                android:id="@+id/water_consumed_progress_bar"
+                style="@android:style/Widget.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="18dp"
+                android:layout_marginTop="8dp"
+                android:progress="90"
+                android:progressDrawable="@drawable/horizontal_progressbar_drawable" />
+
+            <com.android.supafit.ui.RegularFontTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Sleep consumed :"
+                android:textStyle="bold" />
+
+            <com.android.supafit.ui.RegularFontTextView
+                android:id="@+id/sleep_consumed_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="673 out of 4000" />
+
+            <ProgressBar
+                android:id="@+id/sleep_consumed_progress_bar"
+                style="@android:style/Widget.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="18dp"
+                android:layout_marginTop="8dp"
+                android:progress="20"
+                android:progressDrawable="@drawable/horizontal_progressbar_drawable" />
+        </LinearLayout>
+
+        <View
+            android:id="@+id/view_divider2"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_below="@id/progress_views_layout"
+            android:layout_margin="8dp"
+            android:background="#bebebe" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/view_divider2"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <com.android.supafit.ui.RegularFontTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="Calories Gained"
+                    android:textStyle="bold" />
+
+                <com.android.supafit.ui.RegularFontTextView
+                    android:id="@+id/calories_gained_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="650 out of 1100kcal"
+                    android:textStyle="bold" />
+
+                <com.android.supafit.ui.TwoLevelCircularProgressBar
+                    android:id="@+id/calories_gained_progress"
+                    android:layout_width="110dp"
+                    android:layout_height="110dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    app:tlcp_bg_color="@color/color_light_grey"
+                    app:tlcp_progress="80"
+                    app:tlcp_progress2="80"
+                    app:tlcp_progress_color="@color/colorPrimary"
+                    app:tlcp_strokeWidth="10dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <com.android.supafit.ui.RegularFontTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="Calories Burnt"
+                    android:textStyle="bold" />
+
+                <com.android.supafit.ui.RegularFontTextView
+                    android:id="@+id/calories_burnt_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="650 out of 1100kcal" />
+
+                <com.android.supafit.ui.TwoLevelCircularProgressBar
+                    android:id="@+id/calories_burnt_progress"
+                    android:layout_width="110dp"
+                    android:layout_height="110dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    app:tlcp_bg_color="@color/color_light_grey"
+                    app:tlcp_progress="80"
+                    app:tlcp_progress2="80"
+                    app:tlcp_progress_color="@color/colorPrimary"
+                    app:tlcp_strokeWidth="10dp" />
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </RelativeLayout>
+</ScrollView>

@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">SupafitApp</string>
+
+    <string name="title_activity_splash_screen">Supafit</string>
+    <string name="string_tagline">Your personal Trainer App</string>
+    <string name="title_activity_main">Main Activity</string>
+    <string name="dashboard_string">Dashboard</string>
+    <string name="plan_string">Plan</string>
+    <string name="chat_string">Chat</string>
+    <string name="notification_string">Notification</string>
+    <string name="summary_string">Summary</string>
+    <string name="tasks_string">Tasks</string>
+    <string name="opendrawer">Open</string>
+    <string name="closedrawer">Close</string>
+    <string name="menu_string">Menu</string>
+    <string name="profile_text">Profile</string>
+    <string name="analytics_text">Analytics</string>
+    <string name="plan_and_pricing_text">Plans &amp; Pricing</string>
+    <string name="invite_string">Invite</string>
+    <string name="settings_string">Settings</string>
+    <string name="help_and_spport_string">Help &amp; Support</string>
+
+    <string name="title_activity_login">Sign in</string>
+    <string name="title_activity_signup">Signup</string>
+
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password (optional)</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="google_oauth_client">864518350630-iedet70v2hgvf827u8dfo8dao1nu9kjq.apps.googleusercontent.com</string>
+    <string name="google_outah_client_secret">-3dc9GksI44-PEMAwAiYPOPd</string>
+    <string name="facebook_app_id">1691377504464547</string>
+</resources>
