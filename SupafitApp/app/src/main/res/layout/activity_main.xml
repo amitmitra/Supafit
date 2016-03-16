@@ -138,6 +138,7 @@
 
             <LinearLayout
                 android:layout_width="0dp"
+                android:id="@+id/analytics_linear_layout"
                 android:layout_height="120dp"
                 android:layout_weight="1"
                 android:orientation="vertical">
@@ -194,6 +195,7 @@
                 android:layout_width="0dp"
                 android:layout_height="120dp"
                 android:layout_weight="1"
+                android:id="@+id/invite_linear_layout"
                 android:orientation="vertical">
 
                 <ImageView
@@ -218,6 +220,7 @@
                 android:layout_width="0dp"
                 android:layout_height="120dp"
                 android:layout_weight="1"
+                android:id="@+id/settings_linear_layout"
                 android:orientation="vertical">
 
                 <ImageView
@@ -260,8 +263,6 @@
                     android:textColor="@color/colorAccent" />
 
             </LinearLayout>
-
-
         </LinearLayout>
 
     </LinearLayout>

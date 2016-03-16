@@ -5,6 +5,7 @@
     <string name="string_tagline">Your personal Trainer App</string>
     <string name="title_activity_main">Main Activity</string>
     <string name="dashboard_string">Dashboard</string>
+    <string name="setting_string">Settings</string>
     <string name="plan_string">Plan</string>
     <string name="chat_string">Chat</string>
     <string name="notification_string">Notification</string>
@@ -34,4 +35,7 @@
     <string name="google_oauth_client">864518350630-iedet70v2hgvf827u8dfo8dao1nu9kjq.apps.googleusercontent.com</string>
     <string name="google_outah_client_secret">-3dc9GksI44-PEMAwAiYPOPd</string>
     <string name="facebook_app_id">1691377504464547</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

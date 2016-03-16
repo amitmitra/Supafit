@@ -7,4 +7,7 @@
     <color name="light_pink">#E73459</color>
     <color name="text_blue">#2EB5B5</color>
     <color name="color_light_grey">#e9eaf0</color>
+    <color name="sleepingYellow">#FFBC4B</color>
+    <color name="text_color_grey">#c0c0c0</color>
+    <color name="waterBlue">#52C8E2</color>
 </resources>

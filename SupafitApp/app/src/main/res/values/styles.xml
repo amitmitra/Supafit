@@ -54,4 +54,19 @@
         <item name="android:background">@color/colorPrimary</item>
     </style>
 
+
+    <style name="InviteActivitytheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorPrimary</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColorPrimary">#9B999A</item>
+        <item name="android:textColorSecondary">@color/color_light_grey</item>
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="metaButtonBarStyle">?android:attr/buttonBarStyle</item>
+        <item name="metaButtonBarButtonStyle">?android:attr/buttonBarButtonStyle</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+
+    </style>
 </resources>

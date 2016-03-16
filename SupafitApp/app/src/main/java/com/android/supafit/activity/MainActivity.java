@@ -17,6 +17,7 @@ import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,7 +31,7 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
     private static final String TAG = "MainActivity";
@@ -48,6 +49,11 @@ public class MainActivity extends AppCompatActivity {
 
     private SummaryFragment mSummaryFragment;
     private TasksFragment mTaskFragment;
+
+    private  LinearLayout settings_linear_layout;
+    private LinearLayout invite_linear_layout;
+    private LinearLayout analytics_linear_layout;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,7 +82,16 @@ public class MainActivity extends AppCompatActivity {
 
         setUpToolbar();
         setUpViewPager();
+        initializeViews();
+    }
 
+    private void initializeViews() {
+        settings_linear_layout = (LinearLayout) findViewById(R.id.settings_linear_layout);
+        invite_linear_layout = (LinearLayout) findViewById(R.id.invite_linear_layout);
+        analytics_linear_layout = (LinearLayout) findViewById(R.id.analytics_linear_layout);
+        settings_linear_layout.setOnClickListener(this);
+        invite_linear_layout.setOnClickListener(this);
+        analytics_linear_layout.setOnClickListener(this);
     }
 
     private void setUpToolbar(){
@@ -152,7 +167,27 @@ public class MainActivity extends AppCompatActivity {
         Animation animation = new TranslateAnimation(0, 0, 0, TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 290, getResources().getDisplayMetrics()));
         animation.setDuration(500);
         animation.setFillAfter(true);
+
         settings_layout.setAnimation(animation);
+        animation.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                settings_layout.clearAnimation();
+                RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                params.setMargins(0,0,0,0);
+                settings_layout.setLayoutParams(params);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
     }
 
     private void animateSettingsLayoutBottomToTop(){
@@ -178,4 +213,25 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+    @Override
+    public void onClick(View v) {
+
+        switch(v.getId()){
+            case R.id.settings_linear_layout:
+                Toast.makeText(this,"Hello worl",Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(MainActivity.this,SettingsActivity.class);
+                startActivity(i);
+                break;
+
+            case R.id.invite_linear_layout:
+                Intent intent = new Intent(MainActivity.this,InviteActivity.class);
+                startActivity(intent);
+                break;
+
+            case R.id.analytics_linear_layout:
+                Intent analyticsIntent = new Intent(MainActivity.this,AnalyticsListActivity.class);
+                startActivity(analyticsIntent);
+                break;
+        }
+    }
 }
