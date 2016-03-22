@@ -28,8 +28,18 @@ public class AppUtility {
         return matcher.matches();
     }
 
-    public static final String formatDate(Date date){
+    public static final String formatDateTime(Date date){
         DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return format.format(date);
+    }
+
+    public static final String formatDate(Date date){
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        return format.format(date);
+    }
+
+    public static final String formatTime(Date date){
+        DateFormat format = new SimpleDateFormat("HH:mm:ss");
         return format.format(date);
     }
 

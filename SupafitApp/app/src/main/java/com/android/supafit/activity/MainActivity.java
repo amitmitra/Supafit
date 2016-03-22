@@ -27,8 +27,10 @@ import com.android.supafit.fragment.SummaryFragment;
 import com.android.supafit.fragment.TasksFragment;
 import com.android.supafit.gcm.GcmRegistrationIntentService;
 import com.android.supafit.gcm.QuickstartPreferences;
+import com.android.supafit.ui.planslist.PlanListActivity;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
+import com.samsistemas.calendarview.widget.CalendarView;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -44,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ImageView drawer_button;
     private TextView title_text;
     private boolean isDrawerOpened;
-    private Toolbar mToolbar;
+    private Toolbar mToolbar, mToolbar2;
     private LinearLayout settings_layout;
 
     private SummaryFragment mSummaryFragment;
@@ -53,6 +55,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private  LinearLayout settings_linear_layout;
     private LinearLayout invite_linear_layout;
     private LinearLayout analytics_linear_layout;
+    private LinearLayout calendar_layout;
+    private LinearLayout plans_and_pricing_layout;
+
+    private CalendarView calendarView;
 
 
     @Override
@@ -89,14 +95,35 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         settings_linear_layout = (LinearLayout) findViewById(R.id.settings_linear_layout);
         invite_linear_layout = (LinearLayout) findViewById(R.id.invite_linear_layout);
         analytics_linear_layout = (LinearLayout) findViewById(R.id.analytics_linear_layout);
+        plans_and_pricing_layout = (LinearLayout)findViewById(R.id.plans_and_pricing_layout);
         settings_linear_layout.setOnClickListener(this);
         invite_linear_layout.setOnClickListener(this);
         analytics_linear_layout.setOnClickListener(this);
+        plans_and_pricing_layout.setOnClickListener(this);
+
+        /*calendar_layout = (LinearLayout) findViewById(R.id.calendar_layout);
+        calendarView = (CalendarView) findViewById(R.id.calendar_view);
+        calendarView.setFirstDayOfWeek(Calendar.MONDAY);
+        calendarView.setIsOverflowDateVisible(true);
+        calendarView.setCurrentDay(new Date(System.currentTimeMillis()));
+        calendarView.refreshCalendar(Calendar.getInstance(Locale.getDefault()));
+
+        calendarView.setOnDateSelectedListener(new CalendarView.OnDateSelectedListener() {
+            @Override
+            public void onDateSelected(@NonNull Date date) {
+                SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
+                Toast.makeText(MainActivity.this,""+df,Toast.LENGTH_SHORT).show();
+            }
+        });
+        calendar_layout.bringToFront();*/
     }
 
     private void setUpToolbar(){
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        mToolbar = (Toolbar) findViewById(R.id.toolbar1);
+        mToolbar2 = (Toolbar) findViewById(R.id.toolbar2);
+        mToolbar.bringToFront();
         setSupportActionBar(mToolbar);
+        setSupportActionBar(mToolbar2);
         drawer_button = (ImageView)findViewById(R.id.drawer_button) ;
         title_text = (TextView)findViewById(R.id.title_text);
         settings_layout = (LinearLayout)findViewById(R.id.settings_layout);
@@ -138,7 +165,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onDrawerButtonClicked(View view){
         if(isDrawerOpened){
             isDrawerOpened = false;
-            settings_layout.bringToFront();
             title_text.setText(getResources().getString(R.string.dashboard_string));
             drawer_button.setImageResource(R.drawable.ic_drawer);
             animateSettingsLayoutBottomToTop();
@@ -163,11 +189,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void animateSettingsLayoutTopToBottom(){
-        settings_layout.bringToFront();
         Animation animation = new TranslateAnimation(0, 0, 0, TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 290, getResources().getDisplayMetrics()));
         animation.setDuration(500);
-        animation.setFillAfter(true);
-
         settings_layout.setAnimation(animation);
         animation.setAnimationListener(new Animation.AnimationListener() {
             @Override
@@ -179,7 +202,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void onAnimationEnd(Animation animation) {
                 settings_layout.clearAnimation();
                 RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                params.setMargins(0,0,0,0);
+                params.setMargins(0, (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 50, getResources().getDisplayMetrics()),0,0);
                 settings_layout.setLayoutParams(params);
             }
 
@@ -191,9 +214,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void animateSettingsLayoutBottomToTop(){
-        Animation animation = new TranslateAnimation(0, 0, TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 290, getResources().getDisplayMetrics()), 0);
+        Animation animation = new TranslateAnimation(0, 0, 0, TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, -250, getResources().getDisplayMetrics()));
         animation.setDuration(500);
-        animation.setFillAfter(true);
+        animation.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                settings_layout.clearAnimation();
+                RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                params.setMargins(0, (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, -240, getResources().getDisplayMetrics()),0,0);
+                settings_layout.setLayoutParams(params);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
         settings_layout.setAnimation(animation);
     }
 
@@ -217,21 +258,38 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
 
         switch(v.getId()){
+            case R.id.plans_and_pricing_layout:
+                Intent planPriceIntent = new Intent(MainActivity.this,PlanListActivity.class);
+                startActivity(planPriceIntent);
+                overridePendingTransition(R.anim.slide_right_to_left, R.anim.slide_right_to_half_left);
+                animateSettingsLayoutBottomToTop();
+                break;
             case R.id.settings_linear_layout:
-                Toast.makeText(this,"Hello worl",Toast.LENGTH_SHORT).show();
                 Intent i = new Intent(MainActivity.this,SettingsActivity.class);
                 startActivity(i);
+                overridePendingTransition(R.anim.slide_right_to_left, R.anim.slide_right_to_half_left);
+                animateSettingsLayoutBottomToTop();
                 break;
 
             case R.id.invite_linear_layout:
                 Intent intent = new Intent(MainActivity.this,InviteActivity.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.slide_right_to_left, R.anim.slide_right_to_half_left);
+                animateSettingsLayoutBottomToTop();
                 break;
 
             case R.id.analytics_linear_layout:
                 Intent analyticsIntent = new Intent(MainActivity.this,AnalyticsListActivity.class);
                 startActivity(analyticsIntent);
+                overridePendingTransition(R.anim.slide_right_to_left, R.anim.slide_right_to_half_left);
+                animateSettingsLayoutBottomToTop();
                 break;
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.slide_half_left_to_right, R.anim.slide_left_to_right);
     }
 }
