@@ -45,38 +45,36 @@
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
-
-                </LinearLayout>
-
-                <ImageView
-                    android:id="@+id/calendar_button"
-                    android:layout_width="0dp"
-                    android:layout_height="20dp"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:onClick="onCalendarButtonClicked"
-                    android:src="@drawable/calender_icon" />
-
-                <ImageView
-                    android:id="@+id/chat_button"
-                    android:layout_width="0dp"
-                    android:layout_height="20dp"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:onClick="onChatButtonClicked"
-                    android:src="@drawable/chat_icon" />
-
-                <ImageView
-                    android:id="@+id/notification_button"
-                    android:layout_width="0dp"
-                    android:layout_height="20dp"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:onClick="onNotificationButtonClicked"
-                    android:src="@drawable/notification_icon" />
-
-
             </LinearLayout>
+
+            <ImageView
+                android:id="@+id/calendar_button"
+                android:layout_width="0dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:onClick="onCalendarButtonClicked"
+                android:src="@drawable/calender_icon" />
+
+            <ImageView
+                android:id="@+id/chat_button"
+                android:layout_width="0dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:onClick="onChatButtonClicked"
+                android:src="@drawable/chat_icon" />
+
+            <ImageView
+                android:id="@+id/notification_button"
+                android:layout_width="0dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:onClick="onNotificationButtonClicked"
+                android:src="@drawable/notification_icon" />
+
+        </LinearLayout>
 
     </android.support.v7.widget.Toolbar>
 
