@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private  LinearLayout settings_linear_layout;
     private LinearLayout invite_linear_layout;
     private LinearLayout analytics_linear_layout;
+    private LinearLayout profilelinear_layout;
 
 
     @Override
@@ -89,9 +90,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         settings_linear_layout = (LinearLayout) findViewById(R.id.settings_linear_layout);
         invite_linear_layout = (LinearLayout) findViewById(R.id.invite_linear_layout);
         analytics_linear_layout = (LinearLayout) findViewById(R.id.analytics_linear_layout);
+        profilelinear_layout = (LinearLayout) findViewById(R.id.profile_linear_layout);
         settings_linear_layout.setOnClickListener(this);
         invite_linear_layout.setOnClickListener(this);
         analytics_linear_layout.setOnClickListener(this);
+        profilelinear_layout.setOnClickListener(this);
     }
 
     private void setUpToolbar(){
@@ -231,6 +234,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.analytics_linear_layout:
                 Intent analyticsIntent = new Intent(MainActivity.this,AnalyticsListActivity.class);
                 startActivity(analyticsIntent);
+                break;
+
+            case R.id.profile_linear_layout:
+                Intent profileIntent = new Intent(MainActivity.this,UserInformationActivity.class);
+                startActivity(profileIntent);
                 break;
         }
     }
