@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              style="@style/Base.Theme.AppCompat.Light"
+  >
+
+  <ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <LinearLayout
+      android:orientation="vertical"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      >
+      <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        >
+        <ImageView
+          android:background="@color/colorPrimary"
+          android:scaleType="fitXY"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          />
+        <com.android.supafit.ui.RegularFontTextViewBold
+          android:layout_centerVertical="true"
+          android:layout_centerHorizontal="true"
+          android:text="My Goals"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:textColor="#FFFFFF"
+          android:textSize="24sp"
+          android:textStyle="bold"
+          android:gravity="center_horizontal"
+          android:id="@+id/basic_information_title"
+          android:paddingLeft="24dp"
+          />
+        <ImageView
+          android:layout_toLeftOf="@id/basic_information_title"
+          android:layout_centerVertical="true"
+          android:layout_centerHorizontal="true"
+          android:src="@drawable/profile_icon"
+          android:layout_width="48dp"
+          android:layout_height="48dp"
+          />
+      </RelativeLayout>
+
+      <com.android.supafit.ui.RegularFontTextView
+        android:layout_margin="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="24dp"
+        android:textColor="@color/text_colour_black"
+        android:text="Check your goals"
+        android:gravity="center_horizontal|center_vertical"
+        android:textSize="16sp"
+        />
+      <LinearLayout
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginLeft="8dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <CheckBox
+          android:id="@+id/eatbetter"
+          android:layout_weight="1"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:text="Eat better"
+          />
+        <CheckBox
+          android:id="@+id/livehealthier"
+          android:layout_weight="1"
+          android:layout_width="0dp"
+          android:text="Live Healthier"
+          android:layout_height="wrap_content"
+          />
+      </LinearLayout>
+      <LinearLayout
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginLeft="8dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <CheckBox
+          android:id="@+id/weightloss"
+          android:layout_weight="1"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:text="Weight Loss"
+          />
+        <CheckBox
+          android:id="@+id/bearunner"
+          android:layout_weight="1"
+          android:layout_width="0dp"
+          android:text="Be A Runner"
+          android:layout_height="wrap_content"
+          />
+      </LinearLayout>
+      <LinearLayout
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginLeft="8dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <CheckBox
+          android:id="@+id/muscelesbuilder"
+          android:layout_weight="1"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:text="Musceles Builder"
+          />
+        <CheckBox
+          android:id="@+id/weightgain"
+          android:layout_weight="1"
+          android:layout_width="0dp"
+          android:text="Weight Gain"
+          android:layout_height="wrap_content"
+          />
+      </LinearLayout>
+
+    </LinearLayout>
+  </ScrollView>
+</LinearLayout>

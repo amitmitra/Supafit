@@ -20,6 +20,15 @@ public class User implements Serializable {
     private UserPhysic userPhysic;
     private List<PhoneNumber> phoneNumbers;
     private String otp;
+    private String lifestyle;
+
+    public String getLifestyle() {
+        return lifestyle;
+    }
+
+    public void setLifestyle(String lifestyle) {
+        this.lifestyle = lifestyle;
+    }
 
     public long getId() {
         return id;

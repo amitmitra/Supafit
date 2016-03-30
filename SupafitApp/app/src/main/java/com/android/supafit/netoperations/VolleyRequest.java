@@ -4,6 +4,10 @@ import android.content.Context;
 import android.util.Log;
 
 import com.android.supafit.SupafitApplication;
+import com.android.supafit.model.networkmodel.FitnessGoal;
+import com.android.supafit.model.networkmodel.Food;
+import com.android.supafit.model.networkmodel.MedicalCondition;
+import com.android.supafit.model.networkmodel.PlanPackage;
 import com.android.supafit.model.networkmodel.Token;
 import com.android.supafit.model.networkmodel.User;
 import com.android.supafit.netoperations.handler.NetworkHandler;
@@ -13,13 +17,18 @@ import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -62,8 +71,9 @@ public class VolleyRequest {
             }
         };
 
+
         jsonObjectRequest.setRetryPolicy(retryPolicy);
-        SupafitApplication.getInstance().addToRequestQueue(jsonObjectRequest, "signupreq");
+        SupafitApplication.getInstance().addToRequestQueue(jsonObjectRequest);
     }
 
     public static final void signInUser(final Context c, final NetworkHandler handler, final String username, final String password) throws JSONException{
@@ -100,6 +110,135 @@ public class VolleyRequest {
             }
         };
         jsonObjectRequest.setRetryPolicy(retryPolicy);
-        SupafitApplication.getInstance().addToRequestQueue(jsonObjectRequest, "signinreq");
+        SupafitApplication.getInstance().addToRequestQueue(jsonObjectRequest);
+    }
+    public static final void updateUserInformation(final Context c, final NetworkHandler handler, final User user) throws JSONException{
+
+
+        final Gson gson = new Gson();
+        String jsonObject = gson.toJson(user);
+        JSONObject obj = new JSONObject(jsonObject);
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.PUT, URLFactory.USERS,obj, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject jsonObject) {
+                try {
+                    final Gson gson = new Gson();
+                    User user = gson.fromJson(jsonObject.getJSONObject("user").toString(), User.class);
+                    handler.success(user);
+                } catch (JSONException e){
+                    Log.e(TAG, "JSONException");
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                handler.failure(volleyError);
+            }
+        });
+        jsonObjectRequest.setRetryPolicy(retryPolicy);
+        SupafitApplication.getInstance().addToRequestQueue(jsonObjectRequest);
+    }
+    public static final void updateFoodInformation(final Context c, final NetworkHandler handler, final ArrayList<Food> food) throws JSONException{
+
+
+        final Gson gson = new Gson();
+        String jsonObject = gson.toJson(food);
+        JSONObject obj = new JSONObject(jsonObject);
+      String url = URLFactory.USERS_FOOD_PREFERENCES + "?user_id=" + (new AppPreferences(c).getUserId());
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST,url ,obj, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject jsonObject) {
+                try {
+                    final Gson gson = new Gson();
+                    //User user = gson.fromJson(jsonObject.getJSONObject("user").toString(), User.class);
+                    handler.success(new Object());
+                } catch (Exception e){
+                    Log.e(TAG, "JSONException");
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                handler.failure(volleyError);
+            }
+        });
+        jsonObjectRequest.setRetryPolicy(retryPolicy);
+        SupafitApplication.getInstance().addToRequestQueue(jsonObjectRequest);
+    }
+
+    public static final void updateMedicalConditionInformation(final Context c, final NetworkHandler handler, final ArrayList<MedicalCondition> food) throws JSONException{
+
+
+        final Gson gson = new Gson();
+        String jsonObject = gson.toJson(food);
+        JSONObject obj = new JSONObject(jsonObject);
+      String url = URLFactory.USERS_FOOD_PREFERENCES + "?user_id=" + (new AppPreferences(c).getUserId());
+      JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST,url,obj, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject jsonObject) {
+                try {
+                    final Gson gson = new Gson();
+                    //User user = gson.fromJson(jsonObject.getJSONObject("user").toString(), User.class);
+                    handler.success(new Object());
+                } catch (Exception e){
+                    Log.e(TAG, "JSONException");
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                handler.failure(volleyError);
+            }
+        });
+        jsonObjectRequest.setRetryPolicy(retryPolicy);
+        SupafitApplication.getInstance().addToRequestQueue(jsonObjectRequest);
+    }
+
+  public static final void updateMyGoals(final Context c, final NetworkHandler handler, final ArrayList<FitnessGoal> food) throws JSONException{
+
+
+    final Gson gson = new Gson();
+    String jsonObject = gson.toJson(food);
+    JSONObject obj = new JSONObject(jsonObject);
+    String url = URLFactory.USERS_FOOD_PREFERENCES + "?user_id=" + (new AppPreferences(c).getUserId());
+    JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST,url,obj, new Response.Listener<JSONObject>() {
+      @Override
+      public void onResponse(JSONObject jsonObject) {
+        try {
+          final Gson gson = new Gson();
+          //User user = gson.fromJson(jsonObject.getJSONObject("user").toString(), User.class);
+          handler.success(new Object());
+        } catch (Exception e){
+          Log.e(TAG, "JSONException");
+        }
+      }
+    }, new Response.ErrorListener() {
+      @Override
+      public void onErrorResponse(VolleyError volleyError) {
+        handler.failure(volleyError);
+      }
+    });
+    jsonObjectRequest.setRetryPolicy(retryPolicy);
+    SupafitApplication.getInstance().addToRequestQueue(jsonObjectRequest);
+  }
+
+    public static final void getPlansPackage(Context mContext, final NetworkHandler handler){
+
+        JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, URLFactory.GET_PACKAGE_URL, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                ArrayList<PlanPackage> cases = new Gson().fromJson(response.toString(), new TypeToken<List<PlanPackage>>() {}.getType());
+                handler.success(cases);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                handler.failure(error);
+            }
+        });
+
+        request.setRetryPolicy(retryPolicy);
+        SupafitApplication.getInstance().addToRequestQueue(request);
     }
 }

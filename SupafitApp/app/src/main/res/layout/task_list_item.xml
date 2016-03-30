@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="14dp">
+
+    <RelativeLayout
+        android:id="@+id/title_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:id="@+id/task_icon"
+            android:src="@drawable/current_task_icon"/>
+
+        <com.android.supafit.ui.RegularFontTextView
+            android:id="@+id/title"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:layout_width="fill_parent"
+            android:layout_toRightOf="@id/task_icon"
+            android:text="Task Name"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/current_task_blue"
+            android:layout_height="wrap_content"/>
+
+        <ImageView
+            android:id="@+id/watch_icon"
+            android:layout_width="17dp"
+            android:layout_height="17dp"
+            android:layout_marginTop="5dp"
+            android:layout_alignLeft="@id/title"
+            android:layout_below="@id/title"
+            android:src="@drawable/watch_icon"/>
+
+        <com.android.supafit.ui.RegularFontTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="6:00 AM"
+            android:layout_toRightOf="@id/watch_icon"
+            android:layout_marginLeft="5dp"
+            android:textSize="14sp"
+            android:layout_alignTop="@id/watch_icon"
+            android:textColor="@color/text_colour_grey"/>
+        
+        <ImageView
+            android:id="@+id/top_button_click_icon"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/blue_down_icon"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/data_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp">
+
+       <com.android.supafit.ui.RegularFontTextViewBold
+           android:id="@+id/menu_item_text"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:textSize="12sp"
+           android:textStyle="bold"
+           android:textColor="@color/text_colour_black"
+           android:text="Menu Items"/>
+
+        <LinearLayout
+            android:id="@+id/item_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/menu_item_text"
+            android:layout_below="@id/menu_item_text"
+            android:orientation="vertical"/>
+
+        <LinearLayout
+            android:id="@+id/calorie_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/menu_item_text"
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/item_list"
+            android:orientation="horizontal">
+
+            <com.android.supafit.ui.RegularFontTextViewBold
+                android:id="@+id/calorie_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:textColor="@color/text_colour_black"
+                android:text="Total Calories Count: "/>
+
+            <com.android.supafit.ui.RegularFontTextViewBold
+                android:id="@+id/calorie_count_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:textColor="@color/text_colour_black"
+                android:text="120 kcal"/>
+        </LinearLayout>
+
+        <com.android.supafit.ui.RegularFontTextViewBold
+            android:id="@+id/task_done_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/calorie_layout"
+            android:layout_centerHorizontal="true"
+            android:textSize="16sp"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/text_colour_black"
+            android:text="Have you had your breakfast?"/>
+
+        <RelativeLayout
+            android:id="@+id/button_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/task_done_text">
+
+            <android.support.v7.widget.AppCompatButton
+                android:layout_width="100dp"
+                android:layout_height="30dp"
+                android:id="@+id/yes_button"
+                android:layout_alignParentLeft="true"
+                android:text="YES"
+                android:textColor="@color/text_colour_black"
+                android:background="@drawable/button_selector"/>
+
+            <android.support.v7.widget.AppCompatButton
+                android:layout_width="100dp"
+                android:layout_height="30dp"
+                android:id="@+id/no_button"
+                android:text="NO"
+                android:textColor="@color/text_colour_black"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/button_selector"/>
+
+        </RelativeLayout>
+
+        <com.android.supafit.ui.RegularFontTextView
+            android:id="@+id/job_done_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/button_layout"
+            android:textSize="14sp"
+            android:layout_marginTop="10dp"
+            android:layout_centerHorizontal="true"
+            android:visibility="gone"
+            android:text="Good job Palak! Lets focus on next task."
+            android:textColor="@color/text_colour_grey"/>
+
+        <com.android.supafit.ui.RegularFontEditText
+            android:id="@+id/add_comment_box"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_below="@id/button_layout"
+            android:textSize="14sp"
+            android:layout_marginTop="10dp"
+            android:inputType="text"
+            android:visibility="gone"
+            android:textColor="@color/text_colour_black"
+            android:background="@drawable/edittext_boundary"
+            android:layout_centerHorizontal="true"/>
+
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/bottom_button_click_icon"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:src="@drawable/blue_up_icon"
+        android:layout_gravity="right"
+        android:visibility="gone"/>
+
+</LinearLayout>

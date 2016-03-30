@@ -7,7 +7,13 @@
     <color name="light_pink">#E73459</color>
     <color name="text_blue">#2EB5B5</color>
     <color name="color_light_grey">#e9eaf0</color>
+    <color name="done_task_green">#8dc56a</color>
+    <color name="current_task_blue">#00acd0</color>
+    <color name="upcoming_task_yellow">#f2d73e</color>
+    <color name="text_colour_grey">#c0c0c0</color>
+    <color name="text_colour_black">#000000</color>
     <color name="sleepingYellow">#FFBC4B</color>
     <color name="text_color_grey">#c0c0c0</color>
     <color name="waterBlue">#52C8E2</color>
+    <color name="dark_green">#9900AA00</color>
 </resources>

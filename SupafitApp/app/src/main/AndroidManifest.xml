@@ -90,6 +90,18 @@
             android:name=".activity.UserInformationActivity"
             android:label="Basic Information"
             android:theme="@style/AppTheme" />
+        <activity
+            android:name=".activity.FoodPreferenceActivity"
+            android:label="Food Preferences"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".activity.MedicalConditionActivity"
+            android:label="Medical Conditions"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".activity.MyGoalsActivity"
+            android:label="My Goals"
+            android:theme="@style/AppTheme" />
 
         <activity
             android:name=".activity.SettingsActivity"
@@ -101,6 +113,11 @@
 
         <activity android:name=".activity.AnalyticsActivity"
             android:theme="@style/AppFullscreenTheme"></activity>
+
+        <activity
+            android:name=".ui.planslist.PlanListActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

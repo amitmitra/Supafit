@@ -124,6 +124,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     /* 4. meal_task table | start*/
     private static final String meal_task_table = "meal_task";
+    private static final String column_meal_task__id = "id";
     private static final String column_meal_date = "meal_date";
     private static final String column_meal_start_time = "meal_start_time";
     private static final String column_meal_end_time = "meal_end_time";
@@ -138,6 +139,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String column_actual_calorie_consumed = "actual_calorie_consumed";
 
     private static final String create_meal_task_table = " create table " + meal_task_table + "("
+            + column_meal_task__id + " integer, "
             + column_meal_date + " text, "
             + column_meal_start_time + " text, "
             + column_meal_end_time + " text, "
@@ -154,6 +156,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     /* 5. exercise_task table | start*/
     private static final String exercise_task_table = "exercise_task";
+    private static final String column_exercise_task_id = "id";
     private static final String column_exercise_date = "exercise_date";
     private static final String column_exercise_start_time = "exercise_start_time";
     private static final String column_exercise_end_time = "exercise_end_time";
@@ -168,6 +171,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String column_actual_calorie_burned = "actual_calorie_burned";
 
     private static final String create_exercise_task_table = " create table " + exercise_task_table + "("
+            + column_exercise_task_id + " integer, "
             + column_exercise_date + " text, "
             + column_exercise_start_time + " text, "
             + column_exercise_end_time + " text, "

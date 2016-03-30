@@ -322,6 +322,7 @@ public class LoginActivity extends AppCompatActivity implements LogInMvpView,Goo
                 User signinUser = (User) response;
                 new AppPreferences(LoginActivity.this).setUserEmail(signinUser.getUserId());
                 new AppPreferences(LoginActivity.this).setUserPassword(signinUser.getOtp());
+                new AppPreferences(LoginActivity.this).setUserId(signinUser.getId());
 
                 DBUser dbUser = new DBUser();
                 dbUser.setName(signinUser.getName());

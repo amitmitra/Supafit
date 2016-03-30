@@ -1,10 +1,12 @@
 package com.android.supafit.ui.planslist;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -16,12 +18,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.supafit.R;
-import com.android.supafit.activity.MainActivity;
 import com.android.supafit.model.networkmodel.PlanPackage;
+import com.android.supafit.netoperations.VolleyRequest;
+import com.android.supafit.netoperations.handler.NetworkHandler;
+import com.android.supafit.utils.AppUtility;
 import com.viewpagerindicator.CirclePageIndicator;
 import com.zl.reik.dilatingdotsprogressbar.DilatingDotsProgressBar;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -60,6 +65,10 @@ public class PlanListActivity extends AppCompatActivity implements PlanListMvpVi
   @Bind(R.id.next_icon) ImageView nextIcon;
   @Bind(R.id.plan_next_layout) LinearLayout planNextLayout;
   @Bind(R.id.total_plan_cost) TextView totalPlanCost;
+  @Bind(R.id.coordinartor_layout)CoordinatorLayout mCoordinatorLayout;
+
+  ProgressDialog mProgressDialog;
+  List<PlanPackage> plans;
 
   private int currentPage = 0;
   private int NUM_PAGES = 0;
@@ -83,6 +92,32 @@ public class PlanListActivity extends AppCompatActivity implements PlanListMvpVi
     setSupportActionBar(toolbar);
     setTitle("Select Your Plan");
     initViewPager();
+
+    fetchProgramDataFromServer();
+  }
+
+  private void fetchProgramDataFromServer(){
+    mProgressDialog = new ProgressDialog(this);
+    mProgressDialog.setMessage("Fetching Plan Details . . .");
+    mProgressDialog.show();
+    NetworkHandler handler = new NetworkHandler() {
+      @Override
+      public void success(Object response) {
+        plans = (List<PlanPackage>)response;
+        loadPlan1View(plans.get(0));
+        loadPlan2View(plans.get(1));
+        loadPlan3View(plans.get(2));
+        mProgressDialog.dismiss();
+      }
+
+      @Override
+      public void failure(Exception e) {
+        AppUtility.showLongSnackBar(mCoordinatorLayout, "Problem fetching plans data from server . . .");
+        mProgressDialog.dismiss();
+      }
+    };
+
+    VolleyRequest.getPlansPackage(this, handler);
   }
 
   @Override
@@ -92,6 +127,7 @@ public class PlanListActivity extends AppCompatActivity implements PlanListMvpVi
     planDescription1.setText(planPackage.getDescription());
     planResult1.setText(planPackage.getName());
     planCost1.setText("Rs. " + planPackage.getCost());
+    planCost1.setTextColor(getResources().getColor(R.color.dark_green));
     planLayout1.setTag(planPackage);
   }
 
@@ -102,6 +138,7 @@ public class PlanListActivity extends AppCompatActivity implements PlanListMvpVi
     planDescription2.setText(planPackage.getDescription());
     planResult2.setText(planPackage.getName());
     planCost2.setText("Rs. " + planPackage.getCost());
+    planCost2.setTextColor(getResources().getColor(R.color.sleepingYellow));
     planLayout2.setTag(planPackage);
   }
 
@@ -112,6 +149,7 @@ public class PlanListActivity extends AppCompatActivity implements PlanListMvpVi
     planDescription3.setText(planPackage.getDescription());
     planResult3.setText(planPackage.getName());
     planCost3.setText("Rs. " + planPackage.getCost());
+    planCost3.setTextColor(getResources().getColor(R.color.text_blue));
     planLayout3.setTag(planPackage);
   }
 
@@ -262,11 +300,17 @@ public class PlanListActivity extends AppCompatActivity implements PlanListMvpVi
   @Override
   public void goToNextScreen() {
     Toast.makeText(this,"Plan creation success",Toast.LENGTH_SHORT).show();
-    startActivity(new Intent(this, MainActivity.class));
+    onBackPressed();
   }
 
   @Override
   public void showError() {
     Toast.makeText(this,"Plan creation error",Toast.LENGTH_SHORT).show();
+  }
+
+  @Override
+  public void onBackPressed() {
+    super.onBackPressed();
+    overridePendingTransition(R.anim.slide_half_left_to_right, R.anim.slide_left_to_right);
   }
 }

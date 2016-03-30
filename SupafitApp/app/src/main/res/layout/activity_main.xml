@@ -5,106 +5,116 @@
     android:layout_height="match_parent"
     tools:context=".activity.MainActivity">
 
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/appbar_layout"
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        android:elevation="5dp">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@color/colorPrimary">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:id="@+id/drawer_layout"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:onClick="onDrawerButtonClicked"
                 android:orientation="horizontal">
 
-                <LinearLayout
-                    android:id="@+id/drawer_layout"
+                <ImageView
+                    android:id="@+id/drawer_button"
+                    android:layout_width="0dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="0.5"
+                    android:src="@drawable/ic_drawer" />
+
+                <com.android.supafit.ui.RegularFontTextView
+                    android:id="@+id/title_text"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
                     android:layout_weight="4"
-                    android:onClick="onDrawerButtonClicked"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:id="@+id/drawer_button"
-                        android:layout_width="0dp"
-                        android:layout_height="20dp"
-                        android:layout_gravity="center"
-                        android:layout_weight="0.5"
-                        android:src="@drawable/ic_drawer" />
-
-                    <com.android.supafit.ui.RegularFontTextView
-                        android:id="@+id/title_text"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        android:layout_weight="4"
-                        android:gravity="center_vertical"
-                        android:text="@string/dashboard_string"
-                        android:textColor="@color/colorAccent"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
-
-
-                </LinearLayout>
-
-                <ImageView
-                    android:id="@+id/calendar_button"
-                    android:layout_width="0dp"
-                    android:layout_height="20dp"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:onClick="onCalendarButtonClicked"
-                    android:src="@drawable/calender_icon" />
-
-                <ImageView
-                    android:id="@+id/chat_button"
-                    android:layout_width="0dp"
-                    android:layout_height="20dp"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:onClick="onChatButtonClicked"
-                    android:src="@drawable/chat_icon" />
-
-                <ImageView
-                    android:id="@+id/notification_button"
-                    android:layout_width="0dp"
-                    android:layout_height="20dp"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:onClick="onNotificationButtonClicked"
-                    android:src="@drawable/notification_icon" />
-
+                    android:gravity="center_vertical"
+                    android:text="@string/dashboard_string"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
-        </android.support.v7.widget.Toolbar>
+            <ImageView
+                android:id="@+id/calendar_button"
+                android:layout_width="0dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:onClick="onCalendarButtonClicked"
+                android:src="@drawable/calender_icon" />
 
-    </android.support.design.widget.AppBarLayout>
+            <ImageView
+                android:id="@+id/chat_button"
+                android:layout_width="0dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:onClick="onChatButtonClicked"
+                android:src="@drawable/chat_icon" />
 
-    <android.support.design.widget.TabLayout
-        android:layout_below="@id/appbar_layout"
-        android:id="@+id/tablayout"
-        style="@style/MyCustomTabLayout"
+            <ImageView
+                android:id="@+id/notification_button"
+                android:layout_width="0dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:onClick="onNotificationButtonClicked"
+                android:src="@drawable/notification_icon" />
+
+        </LinearLayout>
+
+    </android.support.v7.widget.Toolbar>
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary">
+        android:layout_height="?attr/actionBarSize"
+        android:layout_below="@id/toolbar1"
+        android:background="@color/colorPrimary"
+        android:elevation="5dp">
 
-    </android.support.design.widget.TabLayout>
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tablayout"
+            style="@style/MyCustomTabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/toolbar"
+            android:background="@color/colorPrimary">
+
+        </android.support.design.widget.TabLayout>
+
+    </android.support.v7.widget.Toolbar>
+
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar2" />
 
     <LinearLayout
         android:id="@+id/settings_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/appbar_layout"
+        android:layout_below="@id/toolbar"
+        android:layout_marginTop="-240dp"
         android:background="@color/colorPrimary"
-        android:padding="20dp"
-        android:layout_marginTop="-300dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:elevation="5dp"
+        android:padding="20dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -130,16 +140,16 @@
                     android:layout_height="16dp"
                     android:layout_marginTop="5dp"
                     android:gravity="center_horizontal"
-                    android:textSize="12sp"
                     android:text="@string/profile_text"
-                    android:textColor="@color/colorAccent" />
+                    android:textColor="@color/colorAccent"
+                    android:textSize="12sp" />
 
             </LinearLayout>
 
 
             <LinearLayout
-                android:layout_width="0dp"
                 android:id="@+id/analytics_linear_layout"
+                android:layout_width="0dp"
                 android:layout_height="120dp"
                 android:layout_weight="1"
                 android:orientation="vertical">
@@ -154,14 +164,15 @@
                     android:layout_width="fill_parent"
                     android:layout_height="16dp"
                     android:layout_marginTop="5dp"
-                    android:textSize="12sp"
                     android:gravity="center_horizontal"
                     android:text="@string/analytics_text"
-                    android:textColor="@color/colorAccent" />
+                    android:textColor="@color/colorAccent"
+                    android:textSize="12sp" />
 
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/plans_and_pricing_layout"
                 android:layout_width="0dp"
                 android:layout_height="120dp"
                 android:layout_weight="1"
@@ -179,8 +190,8 @@
                     android:layout_marginTop="5dp"
                     android:gravity="center_horizontal"
                     android:text="@string/plan_and_pricing_text"
-                    android:textSize="12sp"
-                    android:textColor="@color/colorAccent" />
+                    android:textColor="@color/colorAccent"
+                    android:textSize="12sp" />
 
             </LinearLayout>
 
@@ -193,10 +204,10 @@
             android:orientation="horizontal">
 
             <LinearLayout
+                android:id="@+id/invite_linear_layout"
                 android:layout_width="0dp"
                 android:layout_height="120dp"
                 android:layout_weight="1"
-                android:id="@+id/invite_linear_layout"
                 android:orientation="vertical">
 
                 <ImageView
@@ -211,17 +222,17 @@
                     android:layout_marginTop="5dp"
                     android:gravity="center_horizontal"
                     android:text="@string/invite_string"
-                    android:textSize="12sp"
-                    android:textColor="@color/colorAccent" />
+                    android:textColor="@color/colorAccent"
+                    android:textSize="12sp" />
 
             </LinearLayout>
 
 
             <LinearLayout
+                android:id="@+id/settings_linear_layout"
                 android:layout_width="0dp"
                 android:layout_height="120dp"
                 android:layout_weight="1"
-                android:id="@+id/settings_linear_layout"
                 android:orientation="vertical">
 
                 <ImageView
@@ -235,9 +246,9 @@
                     android:layout_height="16dp"
                     android:layout_marginTop="5dp"
                     android:gravity="center_horizontal"
-                    android:textSize="12sp"
                     android:text="@string/settings_string"
-                    android:textColor="@color/colorAccent" />
+                    android:textColor="@color/colorAccent"
+                    android:textSize="12sp" />
 
             </LinearLayout>
 
@@ -260,19 +271,11 @@
                     android:layout_marginTop="5dp"
                     android:gravity="center_horizontal"
                     android:text="@string/help_and_spport_string"
-                    android:textSize="12sp"
-                    android:textColor="@color/colorAccent" />
+                    android:textColor="@color/colorAccent"
+                    android:textSize="12sp" />
 
             </LinearLayout>
         </LinearLayout>
 
     </LinearLayout>
-
-    <android.support.v4.view.ViewPager
-        android:id="@+id/viewpager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/tablayout"/>
-
-
 </RelativeLayout>
