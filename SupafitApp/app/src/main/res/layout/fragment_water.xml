@@ -1,0 +1,112 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="none">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="5dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:layout_marginBottom="20dp">
+
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="3dp"
+            android:text="Average this Week"
+            android:textColor="@android:color/black"
+            android:textSize="12sp" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/average_water_consumed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="3dp"
+            android:text="47 Litres"
+            android:textColor="@color/text_color_grey"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="3dp"
+            android:text="Recomended Average"
+            android:textColor="@android:color/black"
+            android:textSize="12sp" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/recomended_average_water"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="@color/text_color_grey"
+            android:padding="3dp"
+            android:text="55 Litres"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <!--chart starts-->
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/chart1"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_above="@+id/seekBar1" />
+
+        <SeekBar
+            android:id="@+id/seekBar2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_margin="8dp"
+            android:layout_marginRight="5dp"
+            android:layout_toLeftOf="@+id/tvYMax"
+            android:max="10" />
+
+        <SeekBar
+            android:id="@+id/seekBar1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/seekBar2"
+            android:layout_margin="8dp"
+            android:layout_marginRight="5dp"
+            android:layout_toLeftOf="@+id/tvXMax"
+            android:max="10" />
+
+
+        <android.support.v7.widget.AppCompatCheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center_vertical"
+            android:id="@+id/seven_days_checkbox"
+            android:textSize="15sp"
+            android:textColor="@color/waterBlue"
+            android:paddingLeft="10dp"
+            android:button="@drawable/checkbox_selector_blue"
+            android:text="Last 7 days" />
+
+        <android.support.v7.widget.AppCompatCheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:id="@+id/choose_days_checkbox"
+            android:gravity="center_vertical"
+            android:textSize="15sp"
+            android:layout_marginBottom="20dp"
+            android:textColor="@color/waterBlue"
+            android:paddingLeft="5dp"
+            android:button="@drawable/checkbox_selector_blue"
+            android:text="Choose dates :"/>
+
+
+    </LinearLayout>
+</ScrollView>

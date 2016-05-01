@@ -35,11 +35,13 @@
             android:layout_marginTop="5dp"
             android:layout_alignLeft="@id/title"
             android:layout_below="@id/title"
+            android:layout_marginBottom="5dp"
             android:src="@drawable/watch_icon"/>
 
         <com.android.supafit.ui.RegularFontTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/meal_start_time"
             android:text="6:00 AM"
             android:layout_toRightOf="@id/watch_icon"
             android:layout_marginLeft="5dp"
@@ -72,7 +74,7 @@
            android:textSize="12sp"
            android:textStyle="bold"
            android:textColor="@color/text_colour_black"
-           android:text="Menu Items"/>
+           android:text="Menu Items:"/>
 
         <LinearLayout
             android:id="@+id/item_list"
@@ -133,6 +135,7 @@
                 android:layout_height="30dp"
                 android:id="@+id/yes_button"
                 android:layout_alignParentLeft="true"
+                android:gravity="center"
                 android:text="YES"
                 android:textColor="@color/text_colour_black"
                 android:background="@drawable/button_selector"/>
@@ -142,6 +145,7 @@
                 android:layout_height="30dp"
                 android:id="@+id/no_button"
                 android:text="NO"
+                android:gravity="center"
                 android:textColor="@color/text_colour_black"
                 android:layout_alignParentRight="true"
                 android:background="@drawable/button_selector"/>
@@ -169,6 +173,10 @@
             android:layout_marginTop="10dp"
             android:inputType="text"
             android:visibility="gone"
+            android:gravity="start"
+            android:padding="5dp"
+            android:focusable="true"
+            android:hint="why didn't you have your breakfast? "
             android:textColor="@color/text_colour_black"
             android:background="@drawable/edittext_boundary"
             android:layout_centerHorizontal="true"/>

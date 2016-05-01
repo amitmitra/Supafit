@@ -3,12 +3,10 @@ package com.android.supafit.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatSpinner;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -18,21 +16,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.supafit.R;
-import com.android.supafit.database.DatabaseHandler;
-import com.android.supafit.model.dbmodel.DBUser;
-import com.android.supafit.model.networkmodel.PhoneNumber;
-import com.android.supafit.model.networkmodel.User;
-import com.android.supafit.model.networkmodel.UserPhysic;
-import com.android.supafit.netoperations.VolleyRequest;
-import com.android.supafit.netoperations.handler.NetworkHandler;
-import com.android.supafit.ui.planslist.PlanListActivity;
-import com.android.supafit.utils.AppPreferences;
-import com.android.supafit.utils.AppUtility;
-
-import org.json.JSONException;
+import com.android.supafit.netoperations.networkmodel.user.PhoneNumber;
+import com.android.supafit.netoperations.networkmodel.user.User;
+import com.android.supafit.netoperations.networkmodel.user.UserPhysic;
+import com.android.supafit.ui.RegularFontTextViewBold;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -40,7 +29,7 @@ import butterknife.ButterKnife;
 /**
  * Created by harsh on 3/17/16.
  */
-public class UserInformationActivity  extends AppCompatActivity {
+public class UserInformationActivity  extends AppCompatActivity implements View.OnClickListener {
 
   @Bind(R.id.name_edittext) EditText nameEditText;
   @Bind(R.id.age__edittext) EditText ageEditText;
@@ -52,6 +41,9 @@ public class UserInformationActivity  extends AppCompatActivity {
   @Bind(R.id.bmi_display_text) TextView bmrText;
   @Bind(R.id.gender_radio_group) RadioGroup genderRadioGroup;
   @Bind(R.id.lifestyle_spinner) AppCompatSpinner lifeStyleSpinner;
+  private RegularFontTextViewBold title_text;
+  private AppCompatImageView back_button;
+  private AppCompatImageView done_button;
 
   private static final String[] lifestyles= {"Sedentary","Lightly Active","Moderatly Active","Very Active"};
 
@@ -64,8 +56,16 @@ public class UserInformationActivity  extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.user_basic_information);
     ButterKnife.bind(this);
-    getSupportActionBar().setDisplayShowHomeEnabled(true);
     initViews();
+    setUpToolbar();
+  }
+
+  private void setUpToolbar() {
+    title_text = (RegularFontTextViewBold) findViewById(R.id.title_text);
+    back_button = (AppCompatImageView) findViewById(R.id.back_button);
+    done_button = (AppCompatImageView) findViewById(R.id.done_button);
+    done_button.setOnClickListener(this);
+    back_button.setOnClickListener(this);
   }
 
   private void initViews() {
@@ -182,7 +182,8 @@ public class UserInformationActivity  extends AppCompatActivity {
 
     //BMR = 10 * weight(kg) + 6.25 * height(cm) - 5 * age(y) + 5         (man)
     //BMR = 10 * weight(kg) + 6.25 * height(cm) - 5 * age(y) - 161     (woman)
-    if(heighInchEditText.getText().toString().isEmpty() ||heightFeetEditText.getText().toString().isEmpty() ||weightEditText.getText().toString().isEmpty() || ageEditText.getText().toString().isEmpty() )
+    if(heighInchEditText.getText().toString().isEmpty() ||heightFeetEditText.getText().toString().isEmpty()
+            ||weightEditText.getText().toString().isEmpty() || ageEditText.getText().toString().isEmpty() )
       return "";
     int heightInch = Integer.parseInt(heighInchEditText.getText().toString());
     int heightFeet = Integer.parseInt(heightFeetEditText.getText().toString());
@@ -204,7 +205,8 @@ public class UserInformationActivity  extends AppCompatActivity {
   }
 
   private String calculateBmi() {
-    if(heighInchEditText.getText().toString().isEmpty() ||heightFeetEditText.getText().toString().isEmpty() ||weightEditText.getText().toString().isEmpty() )
+    if(heighInchEditText.getText().toString().isEmpty() ||heightFeetEditText.getText().toString().isEmpty()
+            ||weightEditText.getText().toString().isEmpty() )
       return "";
     int heightInch = Integer.parseInt(heighInchEditText.getText().toString());
     int heightFeet = Integer.parseInt(heightFeetEditText.getText().toString());
@@ -214,24 +216,6 @@ public class UserInformationActivity  extends AppCompatActivity {
     double bmi = (weight/(m*m));
     this.bmi = bmi;
     return String.valueOf(bmr);
-  }
-
-  @Override
-  public boolean onCreateOptionsMenu(Menu menu) {
-
-    MenuInflater inflater = getMenuInflater();
-    inflater.inflate(R.menu.basic_information_menu, menu);
-    return true;
-  }
-
-  @Override
-  public boolean onOptionsItemSelected(MenuItem item) {
-    switch (item.getItemId()) {
-      case R.id.action_ok:
-        return submitItems();
-
-    }
-    return super.onOptionsItemSelected(item);
   }
 
   private boolean submitItems() {
@@ -278,15 +262,17 @@ public class UserInformationActivity  extends AppCompatActivity {
       return false;
     }
     User user = new User();
+    user.setId(1);
     UserPhysic userPhysic = new UserPhysic();
     userPhysic.setAge(Integer.parseInt(age));
     userPhysic.setBmi(String.valueOf(bmi));
-    userPhysic.setHeight(String.valueOf(calculatCms(Integer.parseInt(heightFeetEditText.getText().toString()),Integer.parseInt(heighInchEditText.getText().toString()))));
+    userPhysic.setHeight(String.valueOf(calculatCms(Integer.parseInt(heightFeetEditText.getText().toString()),
+            Integer.parseInt(heighInchEditText.getText().toString()))));
     userPhysic.setWeight(String.valueOf(Integer.parseInt(weightEditText.getText().toString())));
-    userPhysic.setUserId((new AppPreferences(this).getUserId()));
+    userPhysic.setUserId(1/*(new AppPreferences(this).getUserId())*/);
     user.setName(nameEditText.getText().toString());
     PhoneNumber phoneNumber = new PhoneNumber();
-    phoneNumber.setUserId((new AppPreferences(this).getUserId()));
+    phoneNumber.setUserId(/*new AppPreferences(this).getUserId())*/1);
     phoneNumber.setNumber(phoneNumberEditText.getText().toString());
     phoneNumber.setType("primary");
     user.setUserPhysic(userPhysic);
@@ -295,25 +281,12 @@ public class UserInformationActivity  extends AppCompatActivity {
     user.setPhoneNumbers(phoneNumbers);
     user.setGender(gender);
     user.setLifestyle(lifestyle);
-    NetworkHandler signInHandler = new NetworkHandler() {
-      @Override
-      public void success(Object response) {
-        Intent intent = new Intent(UserInformationActivity.this, FoodPreferenceActivity.class);
-        startActivity(intent);
-        overridePendingTransition(R.anim.slide_right_to_left, R.anim.slide_right_to_half_left);
-      }
 
-      @Override
-      public void failure(Exception e) {
-        Toast.makeText(UserInformationActivity.this,"network error",Toast.LENGTH_SHORT).show();
-      }
-    };
+    Intent intent = new Intent(UserInformationActivity.this, FoodPreferenceActivity.class);
+    intent.putExtra("user_data", user);
+    startActivity(intent);
+    overridePendingTransition(R.anim.slide_right_to_left, R.anim.slide_right_to_half_left);
 
-    try {
-      VolleyRequest.updateUserInformation(UserInformationActivity.this,signInHandler,user);
-    } catch (JSONException e) {
-      e.printStackTrace();
-    }
     return true;
   }
 
@@ -321,5 +294,23 @@ public class UserInformationActivity  extends AppCompatActivity {
   protected void onDestroy() {
     super.onDestroy();
     ButterKnife.unbind(this);
+  }
+
+  @Override
+  public void onClick(View v) {
+    switch(v.getId()){
+      case R.id.done_button:
+        submitItems();
+        break;
+      case R.id.back_button:
+        finish();
+        break;
+    }
+  }
+
+  @Override
+  public void onBackPressed() {
+    super.onBackPressed();
+    overridePendingTransition(R.anim.slide_half_left_to_right, R.anim.slide_left_to_right);
   }
 }

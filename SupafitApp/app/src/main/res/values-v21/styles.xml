@@ -7,5 +7,11 @@
         <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
 
-
+    <style name="MyAlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorAccent">#FFC107</item>
+        <!-- Used for the title and text -->
+        <item name="android:textColorSecondary">@color/text_color_grey</item>
+        <!-- Used for the background -->
+        <!--<item name="android:background">#4CAF50</item>-->
+    </style>
 </resources>

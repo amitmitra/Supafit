@@ -8,6 +8,11 @@
     android:id="@+id/coordinartor_layout"
     tools:context=".ui.signup.SignupActivity">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -21,6 +26,7 @@
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
+
         android:scrollbars="none">
 
         <LinearLayout
@@ -34,7 +40,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:layout_marginTop="8dp">
+                android:layout_marginTop="20dp">
 
                 <com.android.supafit.ui.LightFontEditText
                     android:id="@+id/input_name"
@@ -84,7 +90,7 @@
                     android:id="@+id/create_password2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Create Password"
+                    android:hint="Confirm Password"
                     android:inputType="textPassword" />
             </android.support.design.widget.TextInputLayout>
 
@@ -125,4 +131,5 @@
                 android:background="@color/colorPrimary" />
         </LinearLayout>
     </ScrollView>
+    </LinearLayout>
 </android.support.design.widget.CoordinatorLayout>

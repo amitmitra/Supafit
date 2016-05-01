@@ -3,22 +3,18 @@ package com.android.supafit.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
+import android.support.v7.widget.AppCompatImageView;
+import android.view.View;
 import android.widget.CheckBox;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.android.supafit.R;
-import com.android.supafit.model.networkmodel.Food;
-import com.android.supafit.netoperations.VolleyRequest;
-import com.android.supafit.netoperations.handler.NetworkHandler;
+import com.android.supafit.netoperations.networkmodel.food.FoodPreferences;
+import com.android.supafit.netoperations.networkmodel.user.User;
 import com.android.supafit.ui.RegularFontEditText;
-import com.android.supafit.ui.planslist.PlanListActivity;
-
-import org.json.JSONException;
+import com.android.supafit.ui.RegularFontTextViewBold;
 
 import java.util.ArrayList;
 
@@ -28,7 +24,7 @@ import butterknife.ButterKnife;
 /**
  * Created by harsh on 3/30/16.
  */
-public class FoodPreferenceActivity extends AppCompatActivity {
+public class FoodPreferenceActivity extends AppCompatActivity implements View.OnClickListener {
 
   @Bind(R.id.veg_radio_button) RadioButton vegRadioButton;
   @Bind(R.id.egg_radio_button) RadioButton eggRadioButton;
@@ -42,15 +38,27 @@ public class FoodPreferenceActivity extends AppCompatActivity {
   @Bind(R.id.continental) CheckBox continental;
   @Bind(R.id.allergy_edittext) RegularFontEditText allergyEdittext;
 
+  private RegularFontTextViewBold title_text;
+  private AppCompatImageView back_button;
+  private AppCompatImageView done_button;
+
   String cusine;
   String dietPreference;
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.food_preferences_layout);
-    getSupportActionBar().setDisplayShowHomeEnabled(true);
     ButterKnife.bind(this);
     initViews();
+    setUpFoodPrefToolbar();
+  }
+
+  private void setUpFoodPrefToolbar() {
+    title_text = (RegularFontTextViewBold) findViewById(R.id.title_text);
+    back_button = (AppCompatImageView) findViewById(R.id.back_button);
+    done_button = (AppCompatImageView) findViewById(R.id.done_button);
+    done_button.setOnClickListener(this);
+    back_button.setOnClickListener(this);
   }
 
   private void initViews() {
@@ -69,68 +77,58 @@ public class FoodPreferenceActivity extends AppCompatActivity {
   }
 
 
-  @Override
-  public boolean onCreateOptionsMenu(Menu menu) {
-    MenuInflater inflater = getMenuInflater();
-    inflater.inflate(R.menu.basic_information_menu, menu);
-    return true;
-  }
-
-  @Override
-  public boolean onOptionsItemSelected(MenuItem item) {
-    switch (item.getItemId()) {
-      case R.id.action_ok:
-        return submitItems();
-
-    }
-    return super.onOptionsItemSelected(item);
-  }
 
   private boolean submitItems() {
-    ArrayList<Food> foodArrayList = new ArrayList<>();
+    User user = (User)getIntent().getSerializableExtra("user_data");
+    ArrayList<FoodPreferences> foodArrayList = new ArrayList<>();
     if(north.isChecked()){
-      Food food = new Food();
-      food.setId(1);
+      FoodPreferences food = new FoodPreferences();
       food.setCuisine("North India");
       food.setDescription("North Indian style food");
+      food.setId(1);
       foodArrayList.add(food);
     }
     if(west.isChecked()){
-      Food food = new Food();
+      FoodPreferences food = new FoodPreferences();
       food.setId(1);
       food.setCuisine("West India");
       food.setDescription("West Indian style food");
       foodArrayList.add(food);
     }
     if(east.isChecked()){
-      Food food = new Food();
+      FoodPreferences food = new FoodPreferences();
       food.setId(1);
       food.setCuisine("East India");
       food.setDescription("East Indian style food");
       foodArrayList.add(food);
     }
     if(south.isChecked()){
-      Food food = new Food();
+      FoodPreferences food = new FoodPreferences();
       food.setId(3);
       food.setCuisine("South India");
       food.setDescription("South Indian style food");
       foodArrayList.add(food);
     }
     if(continental.isChecked()){
-      Food food = new Food();
+      FoodPreferences food = new FoodPreferences();
       food.setId(1);
       food.setCuisine("Continental");
       food.setDescription("Europe dishes");
       foodArrayList.add(food);
     }
     if(chinese.isChecked()){
-      Food food = new Food();
+      FoodPreferences food = new FoodPreferences();
       food.setId(1);
       food.setCuisine("Chinese");
       food.setDescription("Chinese dishes");
       foodArrayList.add(food);
     }
-    NetworkHandler signInHandler = new NetworkHandler() {
+    user.setFoodPreferences(foodArrayList);
+    Intent intent = new Intent(FoodPreferenceActivity.this, MedicalConditionActivity.class);
+    intent.putExtra("user_data", user);
+    startActivity(intent);
+    overridePendingTransition(R.anim.slide_right_to_left, R.anim.slide_right_to_half_left);
+    /*NetworkHandler signInHandler = new NetworkHandler() {
       @Override
       public void success(Object response) {
         Intent intent = new Intent(FoodPreferenceActivity.this, MedicalConditionActivity.class);
@@ -148,7 +146,7 @@ public class FoodPreferenceActivity extends AppCompatActivity {
       VolleyRequest.updateFoodInformation(FoodPreferenceActivity.this,signInHandler,foodArrayList);
     } catch (JSONException e) {
       e.printStackTrace();
-    }
+    }*/
     return true;
   }
 
@@ -157,4 +155,17 @@ public class FoodPreferenceActivity extends AppCompatActivity {
     super.onDestroy();
     ButterKnife.unbind(this);
   }
+
+  @Override
+  public void onClick(View v) {
+    switch(v.getId()){
+      case R.id.done_button:
+        submitItems();
+        Toast.makeText(this,"clicked done",Toast.LENGTH_SHORT).show();
+        break;
+      case R.id.back_button:
+        finish();
+        break;
+  }
+}
 }

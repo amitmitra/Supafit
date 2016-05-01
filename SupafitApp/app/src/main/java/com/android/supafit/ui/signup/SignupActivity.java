@@ -15,21 +15,19 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.android.supafit.R;
+import com.android.supafit.activity.MainActivity;
 import com.android.supafit.database.DatabaseHandler;
-import com.android.supafit.model.dbmodel.DBUser;
-import com.android.supafit.model.networkmodel.PhoneNumber;
-import com.android.supafit.model.networkmodel.User;
+import com.android.supafit.database.dbmodel.DBUser;
 import com.android.supafit.netoperations.VolleyRequest;
 import com.android.supafit.netoperations.handler.NetworkHandler;
-import com.android.supafit.ui.planslist.PlanListActivity;
+import com.android.supafit.netoperations.networkmodel.user.User;
+import com.android.supafit.utils.AppConstants;
 import com.android.supafit.utils.AppPreferences;
 import com.android.supafit.utils.AppUtility;
 
 import org.json.JSONException;
 
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
 
 public class SignupActivity extends AppCompatActivity {
 
@@ -95,64 +93,45 @@ public class SignupActivity extends AppCompatActivity {
                     public void run() {
                         onSignupSuccess();
                     }
-                }, 2000);
+                }, 500);
     }
 
     private void onSignupSuccess() {
-        progressDialog.dismiss();
-        validate();
-        User user = new User();
-        user.setName(Name);
-        user.setOtp(Password);
-        PhoneNumber number = new PhoneNumber();
-        number.setNumber(Phone);
-        number.setType("primary");
-        List<PhoneNumber> numbers = new ArrayList<PhoneNumber>();
-        user.setPhoneNumbers(numbers);
-        user.setEmail(Email);
 
         NetworkHandler handler = new NetworkHandler() {
             @Override
             public void success(Object response) {
-                User signupUser = (User)response;
-                new AppPreferences(SignupActivity.this).setUserEmail(signupUser.getUserId());
-                new AppPreferences(SignupActivity.this).setUserPassword(signupUser.getOtp());
-                NetworkHandler signInHandler = new NetworkHandler() {
-                    @Override
-                    public void success(Object response) {
-                        User signinUser = (User)response;
-                        DBUser dbUser = new DBUser();
-                        dbUser.setName(signinUser.getName());
-                        dbUser.setJoining_date(AppUtility.formatDate(Calendar.getInstance().getTime()));
-                        dbUser.setPhone_number(signinUser.getPhoneNumbers().get(0).getNumber());
-                        new DatabaseHandler(SignupActivity.this).addNewUser(dbUser);
-
-                        Intent intent = new Intent(SignupActivity.this, PlanListActivity.class);
-                        startActivity(intent);
-                        overridePendingTransition(R.anim.slide_right_to_left, R.anim.slide_right_to_half_left);
-                    }
-
-                    @Override
-                    public void failure(Exception e) {
-                        AppUtility.showLongSnackBar(mCoordinatorLayout, "Network Problem!");
-                    }
-                };
-
-                try {
-                    VolleyRequest.signInUser(SignupActivity.this, signInHandler, new AppPreferences(SignupActivity.this).getUserName(), new AppPreferences(SignupActivity.this).getUserPassword());
-                } catch (JSONException e) {
-                    e.printStackTrace();
+                if(response == null){
+                    Toast.makeText(SignupActivity.this, "Email Already Registered!", Toast.LENGTH_SHORT).show();
+                } else {
+                    User signupUser = (User) response;
+                    DBUser dbUser = new DBUser();
+                    dbUser.setName(signupUser.getName());
+                    dbUser.setJoining_date(AppUtility.formatDate(Calendar.getInstance().getTime()));
+                    if(signupUser.getPhoneNumbers() != null && !signupUser.getPhoneNumbers().isEmpty())
+                    dbUser.setPhone_number(signupUser.getPhoneNumbers().get(0).getNumber());
+                    new DatabaseHandler(SignupActivity.this).addNewUser(dbUser);
+                    new AppPreferences(SignupActivity.this).setUserStatus(AppConstants.USER_SIGNED_IN);
+                    new AppPreferences(SignupActivity.this).setLoginType(AppConstants.LOGIN_TYPE_MANUAL);
+                    new AppPreferences(SignupActivity.this).setUserEmail(signupUser.getEmail());
+                    new AppPreferences(SignupActivity.this).setUserPassword(Password);
+                    Intent intent = new Intent(SignupActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    overridePendingTransition(R.anim.slide_right_to_left, R.anim.slide_right_to_half_left);
+                    progressDialog.dismiss();
+                    finishAffinity();
                 }
             }
 
             @Override
             public void failure(Exception e) {
-                AppUtility.showLongSnackBar(mCoordinatorLayout, "Network Problem!");
+                AppUtility.showLongSnackBar(mCoordinatorLayout, "Network Problem! Can not Register!");
+                progressDialog.dismiss();
             }
         };
 
         try {
-            VolleyRequest.signUpUser(this, handler, user);
+            VolleyRequest.signupUser(Name, Email, Password, Phone, handler);
         } catch (JSONException e) {
             Log.e(TAG, "Not able to Signup user because of " + e.getMessage());
             e.printStackTrace();

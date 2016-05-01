@@ -1,6 +1,6 @@
 package com.android.supafit.ui.planslist;
 
-import com.android.supafit.model.networkmodel.PlanPackage;
+import com.android.supafit.netoperations.networkmodel.program.Program;
 import com.android.supafit.ui.base.MvpView;
 
 /**
@@ -12,11 +12,11 @@ public interface PlanListMvpView extends MvpView {
 
   public void stopProgressBar();
 
-  public void loadPlan1View(PlanPackage planPackage);
+  public void loadPlan1View(Program planPackage);
 
-  public void loadPlan2View(PlanPackage planPackage);
+  public void loadPlan2View(Program planPackage);
 
-  public void loadPlan3View(PlanPackage planPackage);
+  public void loadPlan3View(Program planPackage);
 
   public void goToNextScreen();
 

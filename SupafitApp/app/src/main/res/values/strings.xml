@@ -34,8 +34,20 @@
     <string name="error_field_required">This field is required</string>
     <string name="google_oauth_client">864518350630-iedet70v2hgvf827u8dfo8dao1nu9kjq.apps.googleusercontent.com</string>
     <string name="google_outah_client_secret">-3dc9GksI44-PEMAwAiYPOPd</string>
-    <string name="facebook_app_id">1691377504464547</string>
+    <string name="facebook_app_id">896998693742819</string>
 
+    <string name="basicinfo_string">Basic Information</string>
+    <string name="foodpref_string">Food Preferences</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="custom_weekdays">
+        <item>S</item>
+        <item>M</item>
+        <item>T</item>
+        <item>W</item>
+        <item>T</item>
+        <item>F</item>
+        <item>S</item>
+    </string-array>
 </resources>

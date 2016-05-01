@@ -1,195 +1,248 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              style="@style/Base.Theme.AppCompat.Light"
-  >
-
-  <ScrollView
+    style="@style/Base.Theme.AppCompat.Light"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
-    <LinearLayout
-      android:orientation="vertical"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      >
-      <RelativeLayout
+    android:orientation="vertical">
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appbar_layout"
         android:layout_width="match_parent"
-        android:layout_height="160dp"
-        >
-        <ImageView
-          android:background="@color/colorPrimary"
-          android:scaleType="fitXY"
-          android:layout_width="match_parent"
-          android:layout_height="match_parent"
-          />
-        <com.android.supafit.ui.RegularFontTextViewBold
-          android:layout_centerVertical="true"
-          android:layout_centerHorizontal="true"
-          android:text="Food Preferences"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:textColor="#FFFFFF"
-          android:textSize="24sp"
-          android:textStyle="bold"
-          android:gravity="center_horizontal"
-          android:id="@+id/basic_information_title"
-          android:paddingLeft="24dp"
-          />
-        <ImageView
-          android:layout_toLeftOf="@id/basic_information_title"
-          android:layout_centerVertical="true"
-          android:layout_centerHorizontal="true"
-          android:src="@drawable/profile_icon"
-          android:layout_width="48dp"
-          android:layout_height="48dp"
-          />
-      </RelativeLayout>
-      <com.android.supafit.ui.RegularFontTextView
-        android:layout_margin="8dp"
-        android:layout_width="match_parent"
-        android:layout_height="24dp"
-        android:text="Diet Preferences"
-        android:textColor="@color/text_colour_black"
-        android:gravity="center_horizontal|center_vertical"
-        android:textSize="16sp"
-        />
-      <RadioGroup
-        android:layout_marginTop="8dp"
-        android:id="@+id/diet_radio_group"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_horizontal"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        >
-        <RadioButton
-          android:layout_weight="1"
-          android:id="@+id/veg_radio_button"
-          android:text="Vegetarian"
-          android:textColor="@color/text_colour_black"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_gravity="center_horizontal"
-          />
-        <RadioButton
-          android:layout_weight="1"
-          android:id="@+id/egg_radio_button"
-          android:text="Eggitarian"
-          android:textColor="@color/text_colour_black"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          />
-        <RadioButton
-          android:layout_weight="1"
-          android:id="@+id/nonveg_radio_button"
-          android:text="Non-Vegetarian"
-          android:textColor="@color/text_colour_black"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          />
-      </RadioGroup>
+        android:layout_height="wrap_content">
 
-      <com.android.supafit.ui.RegularFontTextView
-        android:layout_margin="8dp"
-        android:layout_width="match_parent"
-        android:layout_height="24dp"
-        android:textColor="@color/text_colour_black"
-        android:text="Lets check your Taste Buds"
-        android:gravity="center_horizontal|center_vertical"
-        android:textSize="16sp"
-        />
-      <LinearLayout
-        android:layout_marginTop="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginLeft="8dp"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
-        <CheckBox
-          android:id="@+id/north"
-          android:layout_weight="1"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:text="North Indian"
-          />
-        <CheckBox
-          android:id="@+id/west"
-          android:layout_weight="1"
-          android:layout_width="0dp"
-          android:text="West Indian"
-          android:layout_height="wrap_content"
-          />
-      </LinearLayout>
-      <LinearLayout
-        android:layout_marginTop="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginLeft="8dp"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
-        <CheckBox
-          android:id="@+id/east"
-          android:layout_weight="1"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:text="East Indian"
-          />
-        <CheckBox
-          android:id="@+id/chinese"
-          android:layout_weight="1"
-          android:layout_width="0dp"
-          android:text="Chinese"
-          android:layout_height="wrap_content"
-          />
-      </LinearLayout>
-      <LinearLayout
-        android:layout_marginTop="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginLeft="8dp"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
-        <CheckBox
-          android:id="@+id/south"
-          android:layout_weight="1"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:text="South Indian"
-          />
-        <CheckBox
-          android:id="@+id/continental"
-          android:layout_weight="1"
-          android:layout_width="0dp"
-          android:text="Continental"
-          android:layout_height="wrap_content"
-          />
-      </LinearLayout>
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar_settings"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorPrimary">
 
-      <com.android.supafit.ui.RegularFontTextView
-        android:layout_margin="8dp"
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <android.support.v7.widget.AppCompatImageView
+                    android:id="@+id/back_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_arrow_left_white" />
+
+                <com.android.supafit.ui.RegularFontTextViewBold
+                    android:id="@+id/title_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/back_button"
+                    android:gravity="center_vertical"
+                    android:layout_centerVertical="true"
+                    android:text="@string/foodpref_string"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+                <android.support.v7.widget.AppCompatImageView
+                    android:layout_width="30dp"
+                    android:layout_height="50dp"
+                    android:id="@+id/done_button"
+                    android:src="@drawable/ic_action_done_white"
+                    android:scaleType="center"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="15dp"/>
+
+            </RelativeLayout>
+        </android.support.v7.widget.Toolbar>
+    </android.support.design.widget.AppBarLayout>
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="24dp"
-        android:textColor="@color/text_colour_black"
-        android:text="Any Allergies?"
-        android:gravity="center_vertical"
-        android:textSize="16sp"
-        />
-      <com.android.supafit.ui.RegularFontEditText
-        android:id="@+id/allergy_edittext"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:background="@color/color_light_grey"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:maxLines="4"
-        />
-      </LinearLayout>
-  </ScrollView>
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:layout_marginBottom="5dp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorPrimary"
+                    android:scaleType="fitXY" />
+
+                <com.android.supafit.ui.RegularFontTextViewBold
+                    android:id="@+id/basic_information_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:gravity="center_horizontal"
+                    android:paddingLeft="24dp"
+                    android:text="Food Preferences"
+                    android:textColor="#FFFFFF"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@id/basic_information_title"
+                    android:src="@drawable/profile_icon" />
+            </RelativeLayout>
+
+            <com.android.supafit.ui.RegularFontTextView
+                android:layout_width="match_parent"
+                android:layout_height="24dp"
+                android:layout_margin="8dp"
+                android:gravity="center_horizontal|center_vertical"
+                android:text="Diet Preferences"
+                android:textColor="@color/text_colour_black"
+                android:textSize="18sp" />
+
+            <RadioGroup
+                android:id="@+id/diet_radio_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="8dp"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/veg_radio_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="1"
+                    android:text="Vegetarian"
+                    android:textColor="@color/text_colour_black" />
+
+                <RadioButton
+                    android:id="@+id/egg_radio_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Eggitarian"
+                    android:textColor="@color/text_colour_black" />
+
+                <RadioButton
+                    android:id="@+id/nonveg_radio_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Non-Vegetarian"
+                    android:textColor="@color/text_colour_black" />
+            </RadioGroup>
+
+            <com.android.supafit.ui.RegularFontTextView
+                android:layout_width="match_parent"
+                android:layout_height="24dp"
+                android:layout_marginLeft="8dp"
+                android:gravity="center_horizontal|center_vertical"
+                android:text="Lets check your Taste Buds"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/text_colour_black"
+                android:textSize="18sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/north"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="North Indian" />
+
+                <CheckBox
+                    android:id="@+id/west"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="West Indian" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/east"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="East Indian" />
+
+                <CheckBox
+                    android:id="@+id/chinese"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Chinese" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/south"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="South Indian" />
+
+                <CheckBox
+                    android:id="@+id/continental"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Continental" />
+            </LinearLayout>
+
+            <com.android.supafit.ui.RegularFontTextView
+                android:layout_width="match_parent"
+                android:layout_height="24dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="15dp"
+                android:gravity="center_vertical"
+                android:text="Any Allergies?"
+                android:textColor="@color/text_colour_black"
+                android:textSize="16sp" />
+
+            <com.android.supafit.ui.RegularFontEditText
+                android:id="@+id/allergy_edittext"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:hint="Please Specify"
+                android:gravity="start"
+                android:background="@color/color_light_grey"
+                android:maxLines="4"
+                android:padding="5dp"
+                android:layout_marginBottom="10dp"/>
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

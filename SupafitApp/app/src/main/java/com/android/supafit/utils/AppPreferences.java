@@ -13,6 +13,7 @@ public class AppPreferences {
 
     private final String CLIENT_ID = "supafit-mobile-app";
     private final String CLIENT_SECRET = "SsUbJJio22nH3rgFf32eRFEF43dedc2wfc2ef_RF34wsdxSXQSCX34RDSdcsd";
+    private final String CLIENT_CREDENTIAL = "client_id:supafit-mobile-app,client_secret:SsUbJJio22nH3rgFf32eRFEF43dedc2wfc2ef_RF34wsdxSXQSCX34RDSdcsd";
 
     private final String USER_ID_KEY = "user_id";
     private final String USER_EMAIL_KEY = "user_email";
@@ -23,6 +24,13 @@ public class AppPreferences {
     private final String GCM_TOKEN_KEY = "gcmtoken";
     private final String USER_STATUS_FLAG = "userstatus";
 
+    private final String PROGRRAM_SELECTED_FLAG = "programselectedflag";
+    private final String TRAINER_ASSIGNED_FLAG = "trainerassignedflag";
+    private final String DIETICIAN_ASSIGNED_FLAG = "dieticianassignedflag";
+    private final String YOGA_TRAINER_ASSIGNED_FLAG = "yogatrainerassignedflag";
+
+    private final String LOGIN_TYPE = "logintype";
+
     public AppPreferences(Context activityContext) {
         mSharedPreferences = activityContext.getSharedPreferences(APP_PREFS_NAME, Context.MODE_PRIVATE);
     }
@@ -31,12 +39,16 @@ public class AppPreferences {
         return CLIENT_ID;
     }
 
+    public String getClientCredential(){
+        return CLIENT_CREDENTIAL;
+    }
+
     public String getClientSecret(){
         return CLIENT_SECRET;
     }
 
     public void setUserEmail(String userEmail){
-        mSharedPreferences.edit().putString(USER_ID_KEY, userEmail).commit();
+        mSharedPreferences.edit().putString(USER_EMAIL_KEY, userEmail).commit();
     }
 
     public String getUserEmail(){
@@ -97,5 +109,45 @@ public class AppPreferences {
 
     public int getUserStatus(){
         return mSharedPreferences.getInt(USER_STATUS_FLAG, 0);
+    }
+
+    public void setProgramSelectedStatus(boolean status){
+        mSharedPreferences.edit().putBoolean(PROGRRAM_SELECTED_FLAG, status).commit();
+    }
+
+    public boolean getProgramSelectedStatus(){
+        return mSharedPreferences.getBoolean(PROGRRAM_SELECTED_FLAG, false);
+    }
+
+    public void setTrainerStatus(boolean status){
+        mSharedPreferences.edit().putBoolean(TRAINER_ASSIGNED_FLAG, status);
+    }
+
+    public boolean getTrainerStatus(){
+        return mSharedPreferences.getBoolean(TRAINER_ASSIGNED_FLAG, false);
+    }
+
+    public void setDieticianStatus(boolean status){
+        mSharedPreferences.edit().putBoolean(DIETICIAN_ASSIGNED_FLAG, status);
+    }
+
+    public boolean getDieticianStatus(){
+        return mSharedPreferences.getBoolean(DIETICIAN_ASSIGNED_FLAG, false);
+    }
+
+    public void setYogaTrainerStatus(boolean status){
+        mSharedPreferences.edit().putBoolean(YOGA_TRAINER_ASSIGNED_FLAG, status);
+    }
+
+    public boolean getYogaTrainerStatus(){
+        return mSharedPreferences.getBoolean(YOGA_TRAINER_ASSIGNED_FLAG, false);
+    }
+
+    public void setLoginType(String loginType){
+        mSharedPreferences.edit().putString(LOGIN_TYPE, loginType);
+    }
+
+    public String getLoginType(){
+        return mSharedPreferences.getString(LOGIN_TYPE, "");
     }
 }

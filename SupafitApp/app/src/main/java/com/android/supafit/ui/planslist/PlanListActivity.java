@@ -18,9 +18,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.supafit.R;
-import com.android.supafit.model.networkmodel.PlanPackage;
 import com.android.supafit.netoperations.VolleyRequest;
 import com.android.supafit.netoperations.handler.NetworkHandler;
+import com.android.supafit.netoperations.networkmodel.program.Program;
 import com.android.supafit.utils.AppUtility;
 import com.viewpagerindicator.CirclePageIndicator;
 import com.zl.reik.dilatingdotsprogressbar.DilatingDotsProgressBar;
@@ -68,7 +68,7 @@ public class PlanListActivity extends AppCompatActivity implements PlanListMvpVi
   @Bind(R.id.coordinartor_layout)CoordinatorLayout mCoordinatorLayout;
 
   ProgressDialog mProgressDialog;
-  List<PlanPackage> plans;
+  List<Program> plans;
 
   private int currentPage = 0;
   private int NUM_PAGES = 0;
@@ -103,7 +103,7 @@ public class PlanListActivity extends AppCompatActivity implements PlanListMvpVi
     NetworkHandler handler = new NetworkHandler() {
       @Override
       public void success(Object response) {
-        plans = (List<PlanPackage>)response;
+        plans = (List<Program>)response;
         loadPlan1View(plans.get(0));
         loadPlan2View(plans.get(1));
         loadPlan3View(plans.get(2));
@@ -121,7 +121,7 @@ public class PlanListActivity extends AppCompatActivity implements PlanListMvpVi
   }
 
   @Override
-  public void loadPlan1View(PlanPackage planPackage) {
+  public void loadPlan1View(Program planPackage) {
     planLayout1.setVisibility(View.VISIBLE);
     planTitle1.setText(planPackage.getTitle());
     planDescription1.setText(planPackage.getDescription());
@@ -132,7 +132,7 @@ public class PlanListActivity extends AppCompatActivity implements PlanListMvpVi
   }
 
   @Override
-  public void loadPlan2View(PlanPackage planPackage) {
+  public void loadPlan2View(Program planPackage) {
     planLayout2.setVisibility(View.VISIBLE);
     planTitle2.setText(planPackage.getTitle());
     planDescription2.setText(planPackage.getDescription());
@@ -143,7 +143,7 @@ public class PlanListActivity extends AppCompatActivity implements PlanListMvpVi
   }
 
   @Override
-  public void loadPlan3View(PlanPackage planPackage) {
+  public void loadPlan3View(Program planPackage) {
     planLayout3.setVisibility(View.VISIBLE);
     planTitle3.setText(planPackage.getTitle());
     planDescription3.setText(planPackage.getDescription());
@@ -212,11 +212,11 @@ public class PlanListActivity extends AppCompatActivity implements PlanListMvpVi
   public void onClick(View view) {
     switch (view.getId()) {
       case R.id.plan_layout_1:
-        PlanPackage planPackage1 = (PlanPackage) planLayout1.getTag();
+        Program planPackage1 = (Program) planLayout1.getTag();
         if (!isPlan1selected) {
           planLayout1.setBackgroundColor(Color.parseColor("#9900AA00"));
           //addToPlanCost(planPackage1.getCost());
-          setTotalCost(planPackage1.getCost());
+          setTotalCost(Integer.parseInt(planPackage1.getCost()));
           isPlan1selected = true;
           isPlan2selected = false;
           isPlan3selected = false;
@@ -230,11 +230,11 @@ public class PlanListActivity extends AppCompatActivity implements PlanListMvpVi
         }
         break;
       case R.id.plan_layout_2:
-        PlanPackage planPackage2 = (PlanPackage) planLayout2.getTag();
+        Program planPackage2 = (Program) planLayout2.getTag();
         if (!isPlan2selected) {
           planLayout2.setBackgroundColor(Color.parseColor("#9900AA00"));
           //addToPlanCost(planPackage2.getCost());
-          setTotalCost(planPackage2.getCost());
+          setTotalCost(Integer.parseInt(planPackage2.getCost()));
           isPlan2selected = true;
           isPlan1selected = false;
           isPlan3selected = false;
@@ -248,11 +248,11 @@ public class PlanListActivity extends AppCompatActivity implements PlanListMvpVi
         }
         break;
       case R.id.plan_layout3:
-        PlanPackage planPackage3 = (PlanPackage) planLayout3.getTag();
+        Program planPackage3 = (Program) planLayout3.getTag();
         if (!isPlan3selected) {
           planLayout3.setBackgroundColor(Color.parseColor("#9900AA00"));
           //addToPlanCost(planPackage3.getCost());
-          setTotalCost(planPackage3.getCost());
+          setTotalCost(Integer.parseInt(planPackage3.getCost()));
           isPlan3selected = true;
           isPlan2selected = false;
           isPlan1selected = false;
@@ -290,12 +290,23 @@ public class PlanListActivity extends AppCompatActivity implements PlanListMvpVi
   @OnClick(R.id.next_icon)
   public void onClick() {
     if(isPlan1selected) {
+      moveToConfirmPlan(plans.get(0));
     }else if(isPlan2selected){
+      moveToConfirmPlan(plans.get(1));
     }else if(isPlan3selected){
+      moveToConfirmPlan(plans.get(2));
     }else{
-
+    Toast.makeText(this,"Select a plan",Toast.LENGTH_SHORT).show();
     }
   }
+
+  private void moveToConfirmPlan(Program planPackage) {
+    Intent confrimPlan = new Intent(PlanListActivity.this,PlanConfirmDialog.class);
+    confrimPlan.putExtra("planPackage",planPackage);
+    startActivity(confrimPlan);
+    finish();
+  }
+
 
   @Override
   public void goToNextScreen() {

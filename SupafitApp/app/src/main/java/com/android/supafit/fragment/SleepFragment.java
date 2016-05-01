@@ -3,12 +3,15 @@ package com.android.supafit.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.AppCompatCheckBox;
 import android.support.v7.widget.AppCompatTextView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.supafit.R;
 import com.android.supafit.utils.MyYAxisValueFormatter;
@@ -38,6 +41,7 @@ public class SleepFragment extends Fragment implements OnChartValueSelectedListe
     protected BarChart mChart;
     private SeekBar mSeekBarX, mSeekBarY;
     private TextView tvX, tvY;
+    private AppCompatCheckBox seven_days_checkbox_sleep,choose_days_checkbox_sleep;
     String[] mMonths = new String[] {
             "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"
     };
@@ -60,10 +64,35 @@ public class SleepFragment extends Fragment implements OnChartValueSelectedListe
 
     private void initializeViews(View rootView) {
         average_water_consumed = (AppCompatTextView) rootView.findViewById(R.id.average_water_consumed);
-        average_water_consumed.setText("57 Litres");
+        average_water_consumed.setText("57 Hours");
 
         recomended_average_water = (AppCompatTextView) rootView.findViewById(R.id.recomended_average_water);
-        recomended_average_water.setText("85 Litres");
+        recomended_average_water.setText("85 Hours");
+
+        seven_days_checkbox_sleep = (AppCompatCheckBox) rootView.findViewById(R.id.seven_days_checkbox_sleep);
+        choose_days_checkbox_sleep = (AppCompatCheckBox) rootView.findViewById(R.id.choose_days_checkbox_sleep);
+        seven_days_checkbox_sleep.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    Toast.makeText(getActivity(),"isChecked  "+isChecked,Toast.LENGTH_SHORT).show();
+
+                }else {
+                    Toast.makeText(getActivity(),"isChecked"+isChecked,Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        choose_days_checkbox_sleep.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    Toast.makeText(getActivity(),"isChecked  "+isChecked,Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(getActivity(),"Seven days isChecked"+isChecked,Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
     private void barGraphData(View rootView) {
@@ -149,10 +178,6 @@ public class SleepFragment extends Fragment implements OnChartValueSelectedListe
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-
-        //tvX.setText("" + (mSeekBarX.getProgress() + 1));
-       // tvY.setText("" + (mSeekBarY.getProgress()));
-
         setData(mSeekBarX.getProgress() + 1, mSeekBarY.getProgress());
         mChart.invalidate();
     }
@@ -184,9 +209,8 @@ public class SleepFragment extends Fragment implements OnChartValueSelectedListe
             yVals1.add(new BarEntry(val, i));
         }
 
-        BarDataSet set1 = new BarDataSet(yVals1, "");
+        BarDataSet set1 = new BarDataSet(yVals1, "Sleep Consumption");
         set1.setHighLightAlpha(0);
-        //set1.setColor(Color.argb(150, Color.red(255), Color.green(188), Color.blue(75)));
         set1.setColors(new int[] { R.color.sleepingYellow }, getContext());
 
         set1.setBarSpacePercent(35f);

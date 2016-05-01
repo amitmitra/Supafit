@@ -4,12 +4,19 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
+import android.text.style.ForegroundColorSpan;
+import android.text.style.StyleSpan;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
@@ -27,9 +34,11 @@ import com.android.supafit.fragment.SummaryFragment;
 import com.android.supafit.fragment.TasksFragment;
 import com.android.supafit.gcm.GcmRegistrationIntentService;
 import com.android.supafit.gcm.QuickstartPreferences;
+import com.android.supafit.netoperations.networkmodel.user.User;
 import com.android.supafit.ui.planslist.PlanListActivity;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
+import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -43,14 +52,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TabLayout tabLayout;
 
     private ImageView drawer_button;
-    private TextView title_text;
+    private TextView title_text, clickable_text;
     private boolean isDrawerOpened;
+    private boolean isCalendarDown;
     private Toolbar mToolbar, mToolbar2;
     private LinearLayout settings_layout;
 
     private SummaryFragment mSummaryFragment;
     private TasksFragment mTaskFragment;
-
 
     private  LinearLayout settings_linear_layout;
     private LinearLayout invite_linear_layout;
@@ -58,6 +67,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private LinearLayout calendar_layout;
     private LinearLayout plans_and_pricing_layout;
     private LinearLayout profile_linear_layout;
+    private MaterialCalendarView calendarView;
+    private LinearLayout not_assigned_layout;
+
+    private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,6 +97,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         };
 
+        user = (User)getIntent().getSerializableExtra("user_data");
+
         setUpToolbar();
         setUpViewPager();
         initializeViews();
@@ -95,26 +110,44 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         analytics_linear_layout = (LinearLayout) findViewById(R.id.analytics_linear_layout);
         plans_and_pricing_layout = (LinearLayout)findViewById(R.id.plans_and_pricing_layout);
         profile_linear_layout = (LinearLayout)findViewById(R.id.profile_linear_layout);
+        calendar_layout = (LinearLayout)findViewById(R.id.calendar_layout);
         settings_linear_layout.setOnClickListener(this);
         invite_linear_layout.setOnClickListener(this);
         analytics_linear_layout.setOnClickListener(this);
         plans_and_pricing_layout.setOnClickListener(this);
         profile_linear_layout.setOnClickListener(this);
+        calendarView = (MaterialCalendarView) findViewById(R.id.calendarView);
+        clickable_text = (TextView)findViewById(R.id.clickable_text);
+        not_assigned_layout = (LinearLayout)findViewById(R.id.not_assigned_layout);
+        conditionForNonAssignment();
+        setClickableSpan();
+    }
 
-        /*calendar_layout = (LinearLayout) findViewById(R.id.calendar_layout);
-        calendarView = (CalendarView) findViewById(R.id.calendar_view);
-        calendarView.setFirstDayOfWeek(Calendar.MONDAY);
-        calendarView.setIsOverflowDateVisible(true);
-        calendarView.setCurrentDay(new Date(System.currentTimeMillis()));
-        calendarView.refreshCalendar(Calendar.getInstance(Locale.getDefault()));
-        calendarView.setOnDateSelectedListener(new CalendarView.OnDateSelectedListener() {
+    private void conditionForNonAssignment(){
+        //if(user.getTrainer() != null && user.getDietitan() != null){
+            not_assigned_layout.setVisibility(View.GONE);
+        /*} else {
+            not_assigned_layout.setVisibility(View.VISIBLE);
+        }*/
+    }
+
+    private void setClickableSpan(){
+        SpannableString ss
+                = new SpannableString("Meanwhile you can help us accelerate the process by telling us more about yourself and completing your Profile");
+
+        ClickableSpan span1 = new ClickableSpan() {
             @Override
-            public void onDateSelected(@NonNull Date date) {
-                SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
-                Toast.makeText(MainActivity.this,""+df,Toast.LENGTH_SHORT).show();
+            public void onClick(View textView) {
+                Intent intent = new Intent(MainActivity.this, UserInformationActivity.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.slide_right_to_left, R.anim.slide_right_to_half_left);
             }
-        });
-        calendar_layout.bringToFront();*/
+        };
+        ss.setSpan(span1, 103, 110, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        ss.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.text_colour_black)), 103, 110, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        ss.setSpan(new StyleSpan(Typeface.BOLD_ITALIC),103,110,Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        clickable_text.setText(ss);
+        clickable_text.setMovementMethod(LinkMovementMethod.getInstance());
     }
 
     private void setUpToolbar(){
@@ -130,6 +163,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void setUpViewPager(){
         viewPager = (ViewPager)findViewById(R.id.viewpager);
+        viewPager.bringToFront();
         tabLayout = (TabLayout)findViewById(R.id.tablayout);
 
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
@@ -176,8 +210,77 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void onCalendarButtonClicked(View view){
-        Toast.makeText(this, "clicked", Toast.LENGTH_LONG).show();
+        //Toast.makeText(this, "clicked", Toast.LENGTH_LONG).show();
+        showCalendarView();
+
     }
+
+    private void showCalendarView() {
+        if(isCalendarDown){
+            animateCalendarLayoutBottomToTop();
+            isCalendarDown = false;
+        } else {
+            animateCalendarLayoutTopToBottom();
+            isCalendarDown = true;
+        }
+
+    }
+
+    private void animateCalendarLayoutTopToBottom() {
+        Animation animation = new TranslateAnimation(0, 0, 0, TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 250,
+                getResources().getDisplayMetrics()));
+        animation.setDuration(500);
+        animation.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+
+                RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT);
+                params.setMargins(0, (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 110,
+                        getResources().getDisplayMetrics()),0,0);
+                calendar_layout.setLayoutParams(params);
+                calendar_layout.getLayoutParams().height = 950;
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+        calendar_layout.setAnimation(animation);
+    }
+
+    private void animateCalendarLayoutBottomToTop() {
+        Animation animation = new TranslateAnimation(0, 0, 0, TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, -250,
+                getResources().getDisplayMetrics()));
+        animation.setDuration(500);
+        animation.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT);
+                params.setMargins(0, (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, -240, getResources().getDisplayMetrics()),0,0);
+                calendar_layout.setLayoutParams(params);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+        calendar_layout.setAnimation(animation);
+    }
+
 
     public void onChatButtonClicked(View view){
         Toast.makeText(this, "clicked", Toast.LENGTH_LONG).show();
@@ -188,7 +291,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void animateSettingsLayoutTopToBottom(){
-        Animation animation = new TranslateAnimation(0, 0, 0, TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 290, getResources().getDisplayMetrics()));
+        Animation animation = new TranslateAnimation(0, 0, 0, TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 290,
+                getResources().getDisplayMetrics()));
         animation.setDuration(500);
         settings_layout.setAnimation(animation);
         animation.setAnimationListener(new Animation.AnimationListener() {
@@ -200,7 +304,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onAnimationEnd(Animation animation) {
                 settings_layout.clearAnimation();
-                RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT);
                 params.setMargins(0, (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 50, getResources().getDisplayMetrics()),0,0);
                 settings_layout.setLayoutParams(params);
             }
@@ -287,6 +392,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.profile_linear_layout:
                 Intent profileIntent = new Intent(MainActivity.this,UserInformationActivity.class);
                 startActivity(profileIntent);
+                animateSettingsLayoutBottomToTop();
                 break;
         }
     }

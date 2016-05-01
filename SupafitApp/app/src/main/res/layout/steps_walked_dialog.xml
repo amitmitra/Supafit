@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/color_light_grey">
+
+
+        <com.android.supafit.ui.RegularFontTextViewBold
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:gravity="center_horizontal"
+            android:padding="5dp"
+            android:text="Steps Consumption"
+            android:textColor="@color/water_yellow"
+            android:textSize="20sp" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+
+    <com.android.supafit.ui.RegularFontEditText
+        android:layout_width="100dp"
+        android:layout_marginLeft="20dp"
+        android:background="@drawable/edittext_bg"
+        android:id="@+id/text_in_steps"
+        android:maxLength="2"
+        android:textCursorDrawable="@null"
+        android:textColor="@color/vpi__bright_foreground_disabled_holo_dark"
+        android:layout_marginRight="10dp"
+        android:layout_height="wrap_content"
+        android:inputType="number|numberSigned"
+        android:padding="5dp"
+        android:textSize="20sp"
+        android:gravity="center_vertical"/>
+    <com.android.supafit.ui.RegularFontTextViewBold
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="In Steps."
+        android:padding="10dp"
+        android:textSize="20sp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="20dp"
+        android:gravity="center_vertical"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_gravity="center"
+        android:orientation="horizontal"
+        android:layout_marginRight="20dp">
+
+        <NumberPicker
+            android:id="@+id/number_hrs"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true" />
+
+        <com.android.supafit.ui.RegularFontTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:text="Hrs"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:layout_gravity="center_vertical"/>
+
+        <NumberPicker
+            android:id="@+id/number_mins"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true" />
+
+        <com.android.supafit.ui.RegularFontTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mins"
+            android:layout_weight="0.6"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:layout_gravity="center_vertical"/>
+    </LinearLayout>
+
+    <com.android.supafit.ui.RegularFontTextView
+        android:id="@+id/done_steps_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/rounded_rectangle"
+        android:elevation="10dp"
+        android:padding="8dp"
+        android:text="Done"
+        android:textColor="@android:color/black"
+        android:textSize="20sp" />
+
+</LinearLayout>

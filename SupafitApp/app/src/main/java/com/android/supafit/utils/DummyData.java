@@ -1,7 +1,7 @@
 package com.android.supafit.utils;
 
-import com.android.supafit.model.dbmodel.DBExercise;
-import com.android.supafit.model.dbmodel.DBMeal;
+import com.android.supafit.database.dbmodel.DBExercise;
+import com.android.supafit.database.dbmodel.DBMeal;
 
 import java.util.ArrayList;
 import java.util.Calendar;

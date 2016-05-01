@@ -14,5 +14,10 @@ public class AppConstants {
     public static final int USER_STATUS_GOALS_FILLED = 6;
     public static final int USER_SIGNED_UP_AND_NOT_SIGNED_IN = 7;
     public static final int USER_SIGNED_IN = 8;
+    public static final int USER_SIGNED_OUT = 9;
+
+    public static final String LOGIN_TYPE_FACEBOOK = "facebook";
+    public static final String LOGIN_TYPE_GOOGLE = "google";
+    public static final String LOGIN_TYPE_MANUAL = "manual";
 
 }

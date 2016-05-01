@@ -7,4 +7,10 @@
     <item>Moderatly Active"</item>
     <item>Very Active</item>
   </string-array>
+
+  <string-array name="water_array">
+    <item>Glass</item>
+    <item>Litres</item>
+    <item>Bottle</item>
+  </string-array>
 </resources>

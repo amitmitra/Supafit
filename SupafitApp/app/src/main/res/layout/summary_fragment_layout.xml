@@ -8,7 +8,8 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:id="@+id/summary_view">
 
         <LinearLayout
             android:id="@+id/task_summary_layout"
@@ -29,19 +30,19 @@
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
-                    app:tlcp_bg_color="@color/color_light_grey"
+                    app:tlcp_bg_color="@android:color/transparent"
                     app:tlcp_progress="80"
                     app:tlcp_progress2="80"
-                    app:tlcp_progress_color="@color/colorPrimary"
-                    app:tlcp_strokeWidth="10dp" />
+                    app:tlcp_progress_color="@color/dark_green"
+                    app:tlcp_strokeWidth="14dp" />
 
-                <com.android.supafit.ui.RegularFontTextView
+                <com.android.supafit.ui.RegularFontTextViewBold
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
                     android:text="Tasks"
-                    android:textSize="16sp"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
             </RelativeLayout>
 
@@ -51,22 +52,46 @@
                 android:layout_weight="1"
                 android:orientation="vertical">
 
-                <com.android.supafit.ui.RegularFontTextView
+                <com.android.supafit.ui.RegularFontTextViewBold
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="12dp"
                     android:text="Tasks completed :"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
-                <com.android.supafit.ui.RegularFontTextView
-                    android:id="@+id/task_status"
-                    android:layout_width="match_parent"
+                <LinearLayout
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="2 out of 7"
-                    android:textSize="12sp" />
+                    android:layout_marginTop="4dp"
+                    android:orientation="horizontal">
 
-                <com.android.supafit.ui.RegularFontTextView
+                    <com.android.supafit.ui.RegularFontTextView
+                        android:id="@+id/actual_task"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="3"
+                        android:textSize="15sp"
+                        android:textColor="@color/dark_green" />
+
+                    <com.android.supafit.ui.RegularFontTextView
+                        android:id="@+id/task_count_textview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:text=" out of "
+                        />
+
+                    <com.android.supafit.ui.RegularFontTextView
+                        android:id="@+id/total_task"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:text="7"
+                        android:textColor="@color/dark_green" />
+                </LinearLayout>
+
+                <com.android.supafit.ui.RegularFontTextViewBold
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
@@ -78,20 +103,48 @@
                     android:id="@+id/next_task_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Yoga Session" />
+                    android:text="Yoga Session"
+                    android:textColor="@color/text_blue"
+                    android:textSize="20sp" />
 
-                <com.android.supafit.ui.RegularFontTextView
-                    android:id="@+id/next_task_time"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="9.00 AM" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:orientation="horizontal">
 
-                <com.android.supafit.ui.RegularFontTextView
-                    android:id="@+id/task_view_more"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="View More" />
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/watch_icon" />
+
+                    <com.android.supafit.ui.RegularFontTextView
+                        android:id="@+id/next_task_time"
+                        android:layout_width="match_parent"
+                        android:layout_height="25dp"
+                        android:gravity="center_vertical"
+                        android:layout_gravity="center_vertical"
+                        android:padding="1dp"
+                        android:text="9.00 AM" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:orientation="horizontal">
+
+                    <com.android.supafit.ui.RegularFontTextView
+                        android:id="@+id/task_view_more"
+                        android:layout_width="match_parent"
+                        android:layout_height="25dp"
+                        android:text="View More"
+                        android:textSize="18sp"/>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="25dp"
+                        android:src="@drawable/ic_action_action_trending_neutral" />
+                </LinearLayout>
             </LinearLayout>
 
         </LinearLayout>
@@ -101,7 +154,8 @@
             android:layout_width="match_parent"
             android:layout_height="2dp"
             android:layout_below="@id/task_summary_layout"
-            android:layout_margin="8dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
             android:background="#bebebe" />
 
         <LinearLayout
@@ -113,19 +167,44 @@
             android:layout_marginRight="24dp"
             android:orientation="vertical">
 
-            <com.android.supafit.ui.RegularFontTextView
+            <com.android.supafit.ui.RegularFontTextViewBold
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Steps walked :"
-                android:textStyle="bold" />
+                android:text="Steps walked" />
 
-            <com.android.supafit.ui.RegularFontTextView
-                android:id="@+id/steps_count_textview"
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="673 out of 4000" />
+                android:orientation="horizontal">
+
+                <com.android.supafit.ui.RegularFontTextView
+                    android:id="@+id/actual_steps"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="673"
+                    android:textColor="@color/steps_brown" />
+
+                <com.android.supafit.ui.RegularFontTextView
+                    android:id="@+id/steps_count_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" out of " />
+
+                <com.android.supafit.ui.RegularFontTextView
+                    android:id="@+id/total_steps"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="4000"
+                    android:textColor="@color/steps_brown" />
+
+                <com.android.supafit.ui.RegularFontTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" Steps" />
+            </LinearLayout>
+
 
             <ProgressBar
                 android:id="@+id/steps_walked_progress_bar"
@@ -136,19 +215,43 @@
                 android:progress="60"
                 android:progressDrawable="@drawable/horizontal_progressbar_drawable" />
 
-            <com.android.supafit.ui.RegularFontTextView
+            <com.android.supafit.ui.RegularFontTextViewBold
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Water consumed :"
-                android:textStyle="bold" />
+                android:text="Water consumed" />
 
-            <com.android.supafit.ui.RegularFontTextView
-                android:id="@+id/water_consumed_textview"
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="673 out of 4000" />
+                android:orientation="horizontal">
+
+                <com.android.supafit.ui.RegularFontTextView
+                    android:id="@+id/actual_water"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="673"
+                    android:textColor="@color/water_yellow" />
+
+                <com.android.supafit.ui.RegularFontTextView
+                    android:id="@+id/water_count_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" out of " />
+
+                <com.android.supafit.ui.RegularFontTextView
+                    android:id="@+id/total_water"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="4000"
+                    android:textColor="@color/water_yellow" />
+
+                <com.android.supafit.ui.RegularFontTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" Litres" />
+            </LinearLayout>
 
             <ProgressBar
                 android:id="@+id/water_consumed_progress_bar"
@@ -157,21 +260,45 @@
                 android:layout_height="18dp"
                 android:layout_marginTop="8dp"
                 android:progress="90"
-                android:progressDrawable="@drawable/horizontal_progressbar_drawable" />
+                android:progressDrawable="@drawable/horizontal_progressbar_drawable_yellow" />
 
-            <com.android.supafit.ui.RegularFontTextView
+            <com.android.supafit.ui.RegularFontTextViewBold
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Sleep consumed :"
-                android:textStyle="bold" />
+                android:text="Sleep consumed " />
 
-            <com.android.supafit.ui.RegularFontTextView
-                android:id="@+id/sleep_consumed_textview"
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="673 out of 4000" />
+                android:orientation="horizontal">
+
+                <com.android.supafit.ui.RegularFontTextView
+                    android:id="@+id/actual_sleep"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="673"
+                    android:textColor="@color/dark_green" />
+
+                <com.android.supafit.ui.RegularFontTextView
+                    android:id="@+id/sleep_count_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" out of " />
+
+                <com.android.supafit.ui.RegularFontTextView
+                    android:id="@+id/total_sleep"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="4000"
+                    android:textColor="@color/dark_green" />
+
+                <com.android.supafit.ui.RegularFontTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" Hours" />
+            </LinearLayout>
 
             <ProgressBar
                 android:id="@+id/sleep_consumed_progress_bar"
@@ -180,7 +307,7 @@
                 android:layout_height="18dp"
                 android:layout_marginTop="8dp"
                 android:progress="20"
-                android:progressDrawable="@drawable/horizontal_progressbar_drawable" />
+                android:progressDrawable="@drawable/horizontal_progressbar_drawable_green" />
         </LinearLayout>
 
         <View
@@ -188,7 +315,10 @@
             android:layout_width="match_parent"
             android:layout_height="2dp"
             android:layout_below="@id/progress_views_layout"
-            android:layout_margin="8dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
             android:background="#bebebe" />
 
         <LinearLayout
@@ -203,20 +333,44 @@
                 android:layout_weight="1"
                 android:orientation="vertical">
 
-                <com.android.supafit.ui.RegularFontTextView
+                <com.android.supafit.ui.RegularFontTextViewBold
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
-                    android:text="Calories Gained"
-                    android:textStyle="bold" />
+                    android:text="Calories Gained" />
 
-                <com.android.supafit.ui.RegularFontTextView
-                    android:id="@+id/calories_gained_text"
-                    android:layout_width="match_parent"
+                <LinearLayout
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:text="650 out of 1100kcal"
-                    android:textStyle="bold" />
+                    android:layout_marginTop="4dp"
+                    android:layout_gravity="center_horizontal"
+                    android:orientation="horizontal">
+
+                    <com.android.supafit.ui.RegularFontTextView
+                        android:id="@+id/actual_cal_gained"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="673"
+                        android:textColor="@color/calorie_red" />
+
+                    <com.android.supafit.ui.RegularFontTextView
+                        android:id="@+id/cal_gained_count_textview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" out of " />
+
+                    <com.android.supafit.ui.RegularFontTextView
+                        android:id="@+id/total_cal_gained"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="4000"
+                        android:textColor="@color/calorie_red" />
+
+                    <com.android.supafit.ui.RegularFontTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" Kcal" />
+                </LinearLayout>
 
                 <com.android.supafit.ui.TwoLevelCircularProgressBar
                     android:id="@+id/calories_gained_progress"
@@ -225,11 +379,11 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
-                    app:tlcp_bg_color="@color/color_light_grey"
+                    app:tlcp_bg_color="@android:color/transparent"
                     app:tlcp_progress="80"
                     app:tlcp_progress2="80"
-                    app:tlcp_progress_color="@color/colorPrimary"
-                    app:tlcp_strokeWidth="10dp" />
+                    app:tlcp_progress_color="@color/calorie_red"
+                    app:tlcp_strokeWidth="12dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -238,19 +392,45 @@
                 android:layout_weight="1"
                 android:orientation="vertical">
 
-                <com.android.supafit.ui.RegularFontTextView
+                <com.android.supafit.ui.RegularFontTextViewBold
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
-                    android:text="Calories Burnt"
-                    android:textStyle="bold" />
+                    android:text="Calories Burnt" />
 
-                <com.android.supafit.ui.RegularFontTextView
-                    android:id="@+id/calories_burnt_text"
-                    android:layout_width="match_parent"
+                <LinearLayout
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:text="650 out of 1100kcal" />
+                    android:layout_marginTop="4dp"
+                    android:layout_gravity="center_horizontal"
+                    android:orientation="horizontal">
+
+                    <com.android.supafit.ui.RegularFontTextView
+                        android:id="@+id/actual_cal_burnt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="673"
+                        android:textColor="@color/calorie_blue" />
+
+                    <com.android.supafit.ui.RegularFontTextView
+                        android:id="@+id/cal_burnt_count_textview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" out of " />
+
+                    <com.android.supafit.ui.RegularFontTextView
+                        android:id="@+id/total_cal_burnt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="4000"
+                        android:textColor="@color/calorie_blue" />
+
+                    <com.android.supafit.ui.RegularFontTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" Kcal" />
+                </LinearLayout>
+
 
                 <com.android.supafit.ui.TwoLevelCircularProgressBar
                     android:id="@+id/calories_burnt_progress"
@@ -259,11 +439,11 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
-                    app:tlcp_bg_color="@color/color_light_grey"
+                    app:tlcp_bg_color="@android:color/transparent"
                     app:tlcp_progress="80"
                     app:tlcp_progress2="80"
-                    app:tlcp_progress_color="@color/colorPrimary"
-                    app:tlcp_strokeWidth="10dp" />
+                    app:tlcp_progress_color="@color/calorie_blue"
+                    app:tlcp_strokeWidth="12dp" />
             </LinearLayout>
         </LinearLayout>
 

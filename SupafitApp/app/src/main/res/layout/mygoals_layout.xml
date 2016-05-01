@@ -1,132 +1,179 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              style="@style/Base.Theme.AppCompat.Light"
-  >
-
-  <ScrollView
+    style="@style/Base.Theme.AppCompat.Light"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
-    <LinearLayout
-      android:orientation="vertical"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      >
-      <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="160dp"
-        >
-        <ImageView
-          android:background="@color/colorPrimary"
-          android:scaleType="fitXY"
-          android:layout_width="match_parent"
-          android:layout_height="match_parent"
-          />
-        <com.android.supafit.ui.RegularFontTextViewBold
-          android:layout_centerVertical="true"
-          android:layout_centerHorizontal="true"
-          android:text="My Goals"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:textColor="#FFFFFF"
-          android:textSize="24sp"
-          android:textStyle="bold"
-          android:gravity="center_horizontal"
-          android:id="@+id/basic_information_title"
-          android:paddingLeft="24dp"
-          />
-        <ImageView
-          android:layout_toLeftOf="@id/basic_information_title"
-          android:layout_centerVertical="true"
-          android:layout_centerHorizontal="true"
-          android:src="@drawable/profile_icon"
-          android:layout_width="48dp"
-          android:layout_height="48dp"
-          />
-      </RelativeLayout>
+    android:orientation="vertical">
 
-      <com.android.supafit.ui.RegularFontTextView
-        android:layout_margin="8dp"
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appbar_layout"
         android:layout_width="match_parent"
-        android:layout_height="24dp"
-        android:textColor="@color/text_colour_black"
-        android:text="Check your goals"
-        android:gravity="center_horizontal|center_vertical"
-        android:textSize="16sp"
-        />
-      <LinearLayout
-        android:layout_marginTop="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginLeft="8dp"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
-        <CheckBox
-          android:id="@+id/eatbetter"
-          android:layout_weight="1"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:text="Eat better"
-          />
-        <CheckBox
-          android:id="@+id/livehealthier"
-          android:layout_weight="1"
-          android:layout_width="0dp"
-          android:text="Live Healthier"
-          android:layout_height="wrap_content"
-          />
-      </LinearLayout>
-      <LinearLayout
-        android:layout_marginTop="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginLeft="8dp"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
-        <CheckBox
-          android:id="@+id/weightloss"
-          android:layout_weight="1"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:text="Weight Loss"
-          />
-        <CheckBox
-          android:id="@+id/bearunner"
-          android:layout_weight="1"
-          android:layout_width="0dp"
-          android:text="Be A Runner"
-          android:layout_height="wrap_content"
-          />
-      </LinearLayout>
-      <LinearLayout
-        android:layout_marginTop="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginLeft="8dp"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
-        <CheckBox
-          android:id="@+id/muscelesbuilder"
-          android:layout_weight="1"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:text="Musceles Builder"
-          />
-        <CheckBox
-          android:id="@+id/weightgain"
-          android:layout_weight="1"
-          android:layout_width="0dp"
-          android:text="Weight Gain"
-          android:layout_height="wrap_content"
-          />
-      </LinearLayout>
+        android:layout_height="wrap_content">
 
-    </LinearLayout>
-  </ScrollView>
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar_settings"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorPrimary">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <android.support.v7.widget.AppCompatImageView
+                    android:id="@+id/back_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_arrow_left_white" />
+
+                <com.android.supafit.ui.RegularFontTextViewBold
+                    android:id="@+id/title_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/back_button"
+                    android:gravity="center_vertical"
+                    android:text="@string/foodpref_string"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <android.support.v7.widget.AppCompatImageView
+                    android:id="@+id/done_button"
+                    android:layout_width="30dp"
+                    android:layout_height="50dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="15dp"
+                    android:scaleType="center"
+                    android:src="@drawable/ic_action_done_white" />
+
+            </RelativeLayout>
+        </android.support.v7.widget.Toolbar>
+    </android.support.design.widget.AppBarLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="160dp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorPrimary"
+                    android:scaleType="fitXY" />
+
+                <com.android.supafit.ui.RegularFontTextViewBold
+                    android:id="@+id/basic_information_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:gravity="center_horizontal"
+                    android:paddingLeft="24dp"
+                    android:text="My Goals"
+                    android:textColor="#FFFFFF"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@id/basic_information_title"
+                    android:src="@drawable/profile_icon" />
+            </RelativeLayout>
+
+            <com.android.supafit.ui.RegularFontTextView
+                android:layout_width="match_parent"
+                android:layout_height="24dp"
+                android:layout_margin="8dp"
+                android:gravity="center_horizontal|center_vertical"
+                android:text="Check your goals"
+                android:textColor="@color/text_colour_black"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/eatbetter"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Eat better" />
+
+                <CheckBox
+                    android:id="@+id/livehealthier"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Live Healthier" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/weightloss"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Weight Loss" />
+
+                <CheckBox
+                    android:id="@+id/bearunner"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Be A Runner" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/muscelesbuilder"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Musceles Builder" />
+
+                <CheckBox
+                    android:id="@+id/weightgain"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Weight Gain" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

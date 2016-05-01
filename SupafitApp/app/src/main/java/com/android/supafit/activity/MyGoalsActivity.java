@@ -3,16 +3,17 @@ package com.android.supafit.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
+import android.support.v7.widget.AppCompatImageView;
+import android.view.View;
 import android.widget.CheckBox;
 import android.widget.Toast;
 
 import com.android.supafit.R;
-import com.android.supafit.model.networkmodel.FitnessGoal;
 import com.android.supafit.netoperations.VolleyRequest;
 import com.android.supafit.netoperations.handler.NetworkHandler;
+import com.android.supafit.netoperations.networkmodel.goal.FitnessGoal;
+import com.android.supafit.netoperations.networkmodel.user.User;
+import com.android.supafit.ui.RegularFontTextViewBold;
 import com.android.supafit.ui.planslist.PlanListActivity;
 
 import org.json.JSONException;
@@ -25,7 +26,7 @@ import butterknife.ButterKnife;
 /**
  * Created by harsh on 3/31/16.
  */
-public class MyGoalsActivity extends AppCompatActivity {
+public class MyGoalsActivity extends AppCompatActivity implements View.OnClickListener {
 
   @Bind(R.id.eatbetter) CheckBox eatbetter;
   @Bind(R.id.livehealthier) CheckBox livehealthier;
@@ -33,81 +34,79 @@ public class MyGoalsActivity extends AppCompatActivity {
   @Bind(R.id.bearunner) CheckBox bearunner;
   @Bind(R.id.muscelesbuilder) CheckBox muscelesbuilder;
   @Bind(R.id.weightgain) CheckBox weightgain;
+  private RegularFontTextViewBold title_text;
+  private AppCompatImageView back_button;
+  private AppCompatImageView done_button;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.mygoals_layout);
     ButterKnife.bind(this);
-    getSupportActionBar().setDisplayShowHomeEnabled(true);
     initViews();
+    setUpGoalsToolbar();
+  }
+
+  private void setUpGoalsToolbar() {
+
+    title_text = (RegularFontTextViewBold) findViewById(R.id.title_text);
+    back_button = (AppCompatImageView) findViewById(R.id.back_button);
+    done_button = (AppCompatImageView) findViewById(R.id.done_button);
+    done_button.setOnClickListener(this);
+    back_button.setOnClickListener(this);
+    title_text.setText("Goals");
   }
 
   private void initViews() {
 
   }
 
-  @Override
-  public boolean onCreateOptionsMenu(Menu menu) {
-    MenuInflater inflater = getMenuInflater();
-    inflater.inflate(R.menu.basic_information_menu, menu);
-    return true;
-  }
-
-  @Override
-  public boolean onOptionsItemSelected(MenuItem item) {
-    switch (item.getItemId()) {
-      case R.id.action_ok:
-        return submitItems();
-
-    }
-    return super.onOptionsItemSelected(item);
-  }
-
   private boolean submitItems() {
-    ArrayList<FitnessGoal> medicalConditionArrayList = new ArrayList<>();
+    User user = (User)getIntent().getSerializableExtra("user_data");
+    ArrayList<FitnessGoal> fitnessGoalArrayList = new ArrayList<>();
     if (eatbetter.isChecked()) {
       FitnessGoal medicalCondition = new FitnessGoal();
       medicalCondition.setId(2);
       medicalCondition.setGoal("Eat Better");
       medicalCondition.setDescription("Eat better");
-      medicalConditionArrayList.add(medicalCondition);
+      fitnessGoalArrayList.add(medicalCondition);
     }
     if (livehealthier.isChecked()) {
       FitnessGoal medicalCondition = new FitnessGoal();
       medicalCondition.setId(1);
       medicalCondition.setGoal("Be Fitter");
       medicalCondition.setDescription("Overall fitness");
-      medicalConditionArrayList.add(medicalCondition);
+      fitnessGoalArrayList.add(medicalCondition);
     }
     if (weightloss.isChecked()) {
       FitnessGoal medicalCondition = new FitnessGoal();
       medicalCondition.setId(2);
       medicalCondition.setGoal("Lose Weight");
       medicalCondition.setDescription("Lose Weight");
-      medicalConditionArrayList.add(medicalCondition);
+      fitnessGoalArrayList.add(medicalCondition);
     }
     if (bearunner.isChecked()) {
       FitnessGoal medicalCondition = new FitnessGoal();
       medicalCondition.setId(3);
       medicalCondition.setGoal("Be A Runner");
       medicalCondition.setDescription("Be A Runner");
-      medicalConditionArrayList.add(medicalCondition);
+      fitnessGoalArrayList.add(medicalCondition);
     }
     if (muscelesbuilder.isChecked()) {
       FitnessGoal medicalCondition = new FitnessGoal();
       medicalCondition.setId(3);
       medicalCondition.setGoal("Gain Muscles");
       medicalCondition.setDescription("Gain Muscles");
-      medicalConditionArrayList.add(medicalCondition);
+      fitnessGoalArrayList.add(medicalCondition);
     }
     if (weightgain.isChecked()) {
       FitnessGoal medicalCondition = new FitnessGoal();
       medicalCondition.setId(4);
       medicalCondition.setGoal("Gain Weight");
       medicalCondition.setDescription("Gain Weight");
-      medicalConditionArrayList.add(medicalCondition);
+      fitnessGoalArrayList.add(medicalCondition);
     }
+   user.setGoals(fitnessGoalArrayList);
     NetworkHandler signInHandler = new NetworkHandler() {
       @Override
       public void success(Object response) {
@@ -118,13 +117,12 @@ public class MyGoalsActivity extends AppCompatActivity {
 
       @Override
       public void failure(Exception e) {
-        Toast.makeText(MyGoalsActivity.this, "network error", Toast.LENGTH_SHORT).show();
+        Toast.makeText(MyGoalsActivity.this,"network error",Toast.LENGTH_SHORT).show();
       }
     };
 
     try {
-      VolleyRequest.updateMyGoals(MyGoalsActivity.this, signInHandler,
-          medicalConditionArrayList);
+      VolleyRequest.updateUserInformation(MyGoalsActivity.this,signInHandler,user);
     } catch (JSONException e) {
       e.printStackTrace();
     }
@@ -135,5 +133,18 @@ public class MyGoalsActivity extends AppCompatActivity {
   protected void onDestroy() {
     super.onDestroy();
     ButterKnife.unbind(this);
+  }
+
+  @Override
+  public void onClick(View v) {
+    switch(v.getId()){
+      case R.id.done_button:
+        submitItems();
+        Toast.makeText(this,"clicked done",Toast.LENGTH_SHORT).show();
+        break;
+      case R.id.back_button:
+        finish();
+        break;
+    }
   }
 }

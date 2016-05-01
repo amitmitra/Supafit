@@ -6,7 +6,7 @@
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <permission
         android:name="com.android.supafit.permission.C2D_MESSAGE"
@@ -20,6 +20,17 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true">
+
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
         <receiver
             android:name="com.google.android.gms.gcm.GcmReceiver"
             android:exported="true"
@@ -50,24 +61,25 @@
             android:exported="false" />
 
         <activity
-            android:name="com.facebook.FacebookActivity"
-            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
-            android:label="@string/app_name"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-
-        <meta-data
-            android:name="com.facebook.sdk.ApplicationId"
-            android:value="@string/facebook_app_id" />
-
-        <activity
             android:name=".activity.SplashScreenActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_splash_screen"
-            android:theme="@style/FullscreenTheme" />
+            android:theme="@style/FullscreenTheme" >
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+
+
         <activity
             android:name=".ui.login.LoginActivity"
             android:label="@string/app_name"
-            android:theme="@style/FullscreenTheme" />
+            android:theme="@style/FullscreenTheme">
+
+            </activity>
         <activity
             android:name=".ui.signup.SignupActivity"
             android:label="@string/title_activity_signup"
@@ -75,12 +87,8 @@
         <activity
             android:name=".activity.MainActivity"
             android:label="@string/dashboard_string"
-            android:theme="@style/FullscreenTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            android:theme="@style/FullscreenTheme"
+            android:windowSoftInputMode="adjustPan">
         </activity>
         <activity
             android:name=".activity.InviteActivity"
@@ -89,19 +97,19 @@
         <activity
             android:name=".activity.UserInformationActivity"
             android:label="Basic Information"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/BasicInforActivitytheme" />
         <activity
             android:name=".activity.FoodPreferenceActivity"
             android:label="Food Preferences"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppFullscreenTheme" />
         <activity
             android:name=".activity.MedicalConditionActivity"
             android:label="Medical Conditions"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppFullscreenTheme"  />
         <activity
             android:name=".activity.MyGoalsActivity"
             android:label="My Goals"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppFullscreenTheme" />
 
         <activity
             android:name=".activity.SettingsActivity"
@@ -117,7 +125,11 @@
         <activity
             android:name=".ui.planslist.PlanListActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.planslist.PlanConfirmDialog"
+            android:theme="@style/AppTheme"
+            android:label="Confirmation"></activity>
     </application>
 
 </manifest>

@@ -5,7 +5,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.android.supafit.model.dbmodel.DBUser;
+import com.android.supafit.database.dbmodel.DBUser;
 
 /**
  * Created by amitmitra on 15/03/16.

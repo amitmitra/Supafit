@@ -1,79 +1,18 @@
 {
   "project_info": {
-    "project_id": "octle-1910",
-    "project_number": "680668537509",
-    "name": "Octle"
+    "project_id": "supafit-d5e46",
+    "project_number": "94891899482",
+    "name": "Supafit"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:680668537509:android:27d689d63f1b7a06",
-        "client_id": "android:com.google.samples.quickstart.signin",
-        "client_type": 1,
-        "android_client_info": {
-          "package_name": "com.google.samples.quickstart.signin"
-        }
-      },
-      "oauth_client": [],
-      "api_key": [],
-      "services": {
-        "analytics_service": {
-          "status": 1
-        },
-        "cloud_messaging_service": {
-          "status": 1,
-          "apns_config": []
-        },
-        "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
-        },
-        "google_signin_service": {
-          "status": 1
-        },
-        "ads_service": {
-          "status": 1
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:680668537509:android:0ff20fa252ce03e3",
-        "client_id": "android:com.supafit.android",
-        "client_type": 1,
-        "android_client_info": {
-          "package_name": "com.supafit.android"
-        }
-      },
-      "oauth_client": [],
-      "api_key": [],
-      "services": {
-        "analytics_service": {
-          "status": 1
-        },
-        "cloud_messaging_service": {
-          "status": 2,
-          "apns_config": []
-        },
-        "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
-        },
-        "google_signin_service": {
-          "status": 1
-        },
-        "ads_service": {
-          "status": 1
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:680668537509:android:b1ee4b20cf9ea29b",
+        "mobilesdk_app_id": "1:94891899482:android:b1ee4b20cf9ea29b",
         "client_id": "android:com.android.supafit",
         "client_type": 1,
         "android_client_info": {
-          "package_name": "com.android.supafit"
+          "package_name": "com.android.supafit",
+          "certificate_hash": []
         }
       },
       "oauth_client": [],
@@ -92,46 +31,6 @@
         },
         "google_signin_service": {
           "status": 1
-        },
-        "ads_service": {
-          "status": 1
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:680668537509:android:81f6631667dc6106",
-        "client_id": "android:com.android.supafit1",
-        "client_type": 1,
-        "android_client_info": {
-          "package_name": "com.android.supafit1"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "680668537509-05ajq7hqbs8jn8f1k7ffg9eu639gsd1c.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.android.supafit1",
-            "certificate_hash": "3F25658989BA466177D8E18837BFCEA06E6273BE"
-          }
-        }
-      ],
-      "api_key": [],
-      "services": {
-        "analytics_service": {
-          "status": 1
-        },
-        "cloud_messaging_service": {
-          "status": 2,
-          "apns_config": []
-        },
-        "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
-        },
-        "google_signin_service": {
-          "status": 2
         },
         "ads_service": {
           "status": 1

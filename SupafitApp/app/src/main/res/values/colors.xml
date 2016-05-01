@@ -16,4 +16,9 @@
     <color name="text_color_grey">#c0c0c0</color>
     <color name="waterBlue">#52C8E2</color>
     <color name="dark_green">#9900AA00</color>
+    <color name="calories_blue">#5585AF</color>
+    <color name="steps_brown">#c99054</color>
+    <color name="water_yellow">#F2D73D</color>
+    <color name="calorie_red">#E0594E</color>
+    <color name="calorie_blue">#5489B5</color>
 </resources>

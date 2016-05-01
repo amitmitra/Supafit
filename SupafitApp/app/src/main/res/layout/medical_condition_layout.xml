@@ -1,150 +1,194 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              style="@style/Base.Theme.AppCompat.Light"
-  >
-
-  <ScrollView
+    style="@style/Base.Theme.AppCompat.Light"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
-    <LinearLayout
-      android:orientation="vertical"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      >
-      <RelativeLayout
+    android:orientation="vertical">
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appbar_layout"
         android:layout_width="match_parent"
-        android:layout_height="160dp"
-        >
-        <ImageView
-          android:background="@color/colorPrimary"
-          android:scaleType="fitXY"
-          android:layout_width="match_parent"
-          android:layout_height="match_parent"
-          />
-        <com.android.supafit.ui.RegularFontTextViewBold
-          android:layout_centerVertical="true"
-          android:layout_centerHorizontal="true"
-          android:text="Medical Conditions"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:textColor="#FFFFFF"
-          android:textSize="24sp"
-          android:textStyle="bold"
-          android:gravity="center_horizontal"
-          android:id="@+id/basic_information_title"
-          android:paddingLeft="24dp"
-          />
-        <ImageView
-          android:layout_toLeftOf="@id/basic_information_title"
-          android:layout_centerVertical="true"
-          android:layout_centerHorizontal="true"
-          android:src="@drawable/profile_icon"
-          android:layout_width="48dp"
-          android:layout_height="48dp"
-          />
-      </RelativeLayout>
+        android:layout_height="wrap_content">
 
-      <com.android.supafit.ui.RegularFontTextView
-        android:layout_margin="8dp"
-        android:layout_width="match_parent"
-        android:layout_height="24dp"
-        android:textColor="@color/text_colour_black"
-        android:text="Check your medical conditions"
-        android:gravity="center_horizontal|center_vertical"
-        android:textSize="16sp"
-        />
-      <LinearLayout
-        android:layout_marginTop="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginLeft="8dp"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
-        <CheckBox
-          android:id="@+id/hypertension"
-          android:layout_weight="1"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:text="Hypertension"
-          />
-        <CheckBox
-          android:id="@+id/diabetes"
-          android:layout_weight="1"
-          android:layout_width="0dp"
-          android:text="Diabetes"
-          android:layout_height="wrap_content"
-          />
-      </LinearLayout>
-      <LinearLayout
-        android:layout_marginTop="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginLeft="8dp"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
-        <CheckBox
-          android:id="@+id/hypothyroid"
-          android:layout_weight="1"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:text="Hypothyroid"
-          />
-        <CheckBox
-          android:id="@+id/asthama"
-          android:layout_weight="1"
-          android:layout_width="0dp"
-          android:text="Asthama"
-          android:layout_height="wrap_content"
-          />
-      </LinearLayout>
-      <LinearLayout
-        android:layout_marginTop="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginLeft="8dp"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
-        <CheckBox
-          android:id="@+id/highbp"
-          android:layout_weight="1"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:text="High Blood Pressure"
-          />
-        <CheckBox
-          android:id="@+id/physicalinjury"
-          android:layout_weight="1"
-          android:layout_width="0dp"
-          android:text="Physical Injury"
-          android:layout_height="wrap_content"
-          />
-      </LinearLayout>
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar_settings"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorPrimary">
 
-      <com.android.supafit.ui.RegularFontTextView
-        android:layout_margin="8dp"
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <android.support.v7.widget.AppCompatImageView
+                    android:id="@+id/back_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_arrow_left_white" />
+
+                <com.android.supafit.ui.RegularFontTextViewBold
+                    android:id="@+id/title_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/back_button"
+                    android:gravity="center_vertical"
+                    android:layout_centerVertical="true"
+                    android:text="@string/foodpref_string"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+                <android.support.v7.widget.AppCompatImageView
+                    android:layout_width="30dp"
+                    android:layout_height="50dp"
+                    android:id="@+id/done_button"
+                    android:src="@drawable/ic_action_done_white"
+                    android:scaleType="center"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="15dp"/>
+
+            </RelativeLayout>
+        </android.support.v7.widget.Toolbar>
+    </android.support.design.widget.AppBarLayout>
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="24dp"
-        android:textColor="@color/text_colour_black"
-        android:text="Any Other?"
-        android:gravity="center_vertical"
-        android:textSize="16sp"
-        />
-      <com.android.supafit.ui.RegularFontEditText
-        android:id="@+id/allergy_edittext"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:background="@color/color_light_grey"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:maxLines="4"
-        />
-    </LinearLayout>
-  </ScrollView>
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="160dp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorPrimary"
+                    android:scaleType="fitXY" />
+
+                <com.android.supafit.ui.RegularFontTextViewBold
+                    android:id="@+id/basic_information_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:gravity="center_horizontal"
+                    android:paddingLeft="24dp"
+                    android:text="Medical Conditions"
+                    android:textColor="#FFFFFF"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@id/basic_information_title"
+                    android:src="@drawable/profile_icon" />
+            </RelativeLayout>
+
+            <com.android.supafit.ui.RegularFontTextView
+                android:layout_width="match_parent"
+                android:layout_height="24dp"
+                android:layout_margin="8dp"
+                android:gravity="center_horizontal|center_vertical"
+                android:text="Check your medical conditions"
+                android:textColor="@color/text_colour_black"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/hypertension"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Hypertension" />
+
+                <CheckBox
+                    android:id="@+id/diabetes"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Diabetes" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/hypothyroid"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Hypothyroid" />
+
+                <CheckBox
+                    android:id="@+id/asthama"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Asthama" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/highbp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="High Blood Pressure" />
+
+                <CheckBox
+                    android:id="@+id/physicalinjury"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Physical Injury" />
+            </LinearLayout>
+
+            <com.android.supafit.ui.RegularFontTextView
+                android:layout_width="match_parent"
+                android:layout_height="24dp"
+                android:layout_margin="8dp"
+                android:gravity="center_vertical"
+                android:text="Any Other?"
+                android:textColor="@color/text_colour_black"
+                android:textSize="16sp" />
+
+            <com.android.supafit.ui.RegularFontEditText
+                android:id="@+id/allergy_edittext"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:background="@color/color_light_grey"
+                android:maxLines="4" />
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>
